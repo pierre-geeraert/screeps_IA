@@ -3,33 +3,37 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var spawner = require('spawner');
 
-module.exports.loop = function () {
 
+
+module.exports.loop = function () {
+    //spawner.set_creep_to_list;
+    
+    
+    
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory :', name);
         }
     }
-
+    console.log('=======================================================');
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     console.log('Harvesters: ' + harvesters.length);
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('builders: ' + builders.length);
-    var builders = 2;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
 
     if(harvesters.length < 2) {
-        spawner.run("harvester");
+        spawner.creep_spawn("harvester");
     }
 
     if(builders.length < 2) {
-        spawner.run("builder");
+        //spawner.creep_spawn("builder");
     }
 
-    if(upgraders.length < 2) {
-        spawner.run("upgrader");
+    if(upgraders.length < 3) {
+        spawner.creep_spawn("upgrader");
     }
 
     
@@ -47,7 +51,7 @@ module.exports.loop = function () {
         if(creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
         }
-	if(creep.memory.role == 'upgrader') {
+	    if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
         if(creep.memory.role == 'builder') {
