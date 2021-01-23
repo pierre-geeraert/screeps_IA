@@ -3,10 +3,10 @@ function creep_spawn(type) {
     var newName = type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
     //set_creep_to_list(newName);
+    var sources_random = set_creep_to_list();
     Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,CARRY,CARRY,MOVE], newName, 
-        {memory: {role: type, creep_direction: "sources"}});
-    //creep.memory.direction = "controller";
-   
+        {memory: {role: type, creep_direction: sources_random}});
+
 }
 
 function say_hello(type){
@@ -33,21 +33,45 @@ function init_list(){
 
 
 //this function need to return a list alpha or beta randomly
+
+    
+
 function set_creep_to_list(creep_name){
+    //Game.getObjectById(Game.creeps[name].memory.targetID)
+    //var creep_test = Game.creeps.builder538588.id;
+    //console.log(creep_test);
+    
+    //Game.creeps.creep_name.say('e');
+    //var creep_desired = Game.creeps.id;
+    
     if(Math.floor(Math.random()*2)){
+        //creep.memory.sources = 'alpha' 
        //creep_name.memory.list = "liste_alpha";
-       Game.creeps.creep_name.memory.rola = 'alpha';
-       console.log('Set : ' + creep_name + ' in liste_alpha');
+       //Game.creeps.creep_name.memory.rola = 'alpha';
+       //console.log('Set : ' + creep + ' in liste_alpha');
+       return 'alpha';
     }
     else{
-       Game.creeps.creep_name.memory.rola = 'beta';
+        //creep.memory.sources = 'beta' 
+       //Game.creeps.creep_name.memory.rola = 'beta';
        //creep_name.Memory.list = "liste_beta";
-       console.log('Set : ' + creep_name + ' in liste_beta');
+       //console.log('Set : ' + creep + ' in liste_beta');
+       return 'beta';
+    }
+}
+function source_id_from_position(position){
+    if(position=='alpha'){
+        return '1d190775111f525';
+    }
+    else if(position=='beta'){
+        return '504d0775111fdb7';
+    }
+    else{
+        return '1d190775111f525';
     }
 }
 
 
 
-
-module.exports = {say_hello,creep_spawn,init_list,set_creep_to_list};
+module.exports = {say_hello,creep_spawn,init_list,set_creep_to_list,source_id_from_position};
 //module.exports = spawner;

@@ -6,8 +6,7 @@ var spawner = require('spawner');
 
 
 module.exports.loop = function () {
-
-    
+    console.log(spawner.source_id_from_position('alpha'));
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
@@ -22,15 +21,15 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
 
-    if(harvesters.length < 1) {
+    if(harvesters.length < 2) {
         spawner.creep_spawn("harvester");
     }
 
-    if(builders.length < 2) {
+    if(builders.length < 3) {
         spawner.creep_spawn("builder");
     }
 
-    if(upgraders.length < 4) {
+    if(upgraders.length < 3) {
         spawner.creep_spawn("upgrader");
     }
 
@@ -46,6 +45,7 @@ module.exports.loop = function () {
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
+        //spawner.set_creep_to_list(creep);
         if(creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
         }
