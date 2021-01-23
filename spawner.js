@@ -3,14 +3,25 @@ function creep_spawn(type) {
     var newName = type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
     //set_creep_to_list(newName);
-    Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,CARRY,MOVE], newName, 
-        {memory: {role: type}});
-    
+    Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,CARRY,CARRY,MOVE], newName, 
+        {memory: {role: type, creep_direction: "sources"}});
+    //creep.memory.direction = "controller";
    
 }
 
 function say_hello(type){
-    console.log('I want to say '+type+': ' + type);
+    switch (type){
+        case 'harvester':
+            console.log("🔄 new harvester");
+        break;
+        case 'builder':
+            console.log("🚧 new builder");
+        break;
+        case 'upgrader':
+            console.log(":top: new upgrader");
+        break;
+    }
+    //console.log('I want to say '+type+': ' + type);
 }
 
 function init_list(){

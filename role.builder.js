@@ -22,8 +22,9 @@ var roleBuilder = {
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            var Source_down = Game.getObjectById('504d0775111fdb7');
+            if(creep.harvest(Source_down) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Source_down, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
 	    }
 	}

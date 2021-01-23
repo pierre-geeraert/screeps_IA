@@ -6,9 +6,7 @@ var spawner = require('spawner');
 
 
 module.exports.loop = function () {
-    //spawner.set_creep_to_list;
-    
-    
+
     
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -24,15 +22,15 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
 
-    if(harvesters.length < 2) {
+    if(harvesters.length < 1) {
         spawner.creep_spawn("harvester");
     }
 
     if(builders.length < 2) {
-        //spawner.creep_spawn("builder");
+        spawner.creep_spawn("builder");
     }
 
-    if(upgraders.length < 3) {
+    if(upgraders.length < 4) {
         spawner.creep_spawn("upgrader");
     }
 
