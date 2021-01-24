@@ -1,12 +1,15 @@
+var spawner = require('spawner');
+
 var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
             var sources = creep.room.find(FIND_SOURCES);
-            var Source_down = Game.getObjectById('504d0775111fdb7');
-            if(creep.harvest(Source_down) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Source_down, {visualizePathStyle: {stroke: '#ffaa00'}});
+            var sources_memory = spawner.source_id_from_position(creep.memory.creep_direction)
+            //var Source_down = Game.getObjectById('504d0775111fdb7');
+            if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
                 creep.say('harvest');
             }
         }
