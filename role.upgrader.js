@@ -22,7 +22,7 @@ var roleUpgrader = {
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
             //var Source_up = Game.getObjectById('1d190775111f525');
-            var sources_memory = spawner.source_id_from_position(creep.memory.creep_direction)
+            var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
             if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
             }

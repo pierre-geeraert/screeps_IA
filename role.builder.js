@@ -36,7 +36,7 @@ var roleBuilder = {
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-            var sources_memory = spawner.source_id_from_position(creep.memory.creep_direction)
+            var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
             //var Source_down = Game.getObjectById('504d0775111fdb7');
             if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
