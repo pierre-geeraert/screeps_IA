@@ -6,7 +6,7 @@ var spawner = require('spawner');
 
 
 module.exports.loop = function () {
-    console.log(spawner.source_id_from_position('alpha'));
+    //console.log(spawner.source_id_from_position('alpha'));
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
@@ -25,7 +25,7 @@ module.exports.loop = function () {
         spawner.creep_spawn("harvester");
     }
 
-    if(builders.length < 3) {
+    if(builders.length < 2) {
         spawner.creep_spawn("builder");
     }
 
