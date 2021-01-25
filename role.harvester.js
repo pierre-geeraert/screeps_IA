@@ -10,7 +10,7 @@ var roleHarvester = {
             //var Source_down = Game.getObjectById('504d0775111fdb7');
             if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
-                creep.say('H <=');
+                creep.say('⚡ 🔙');
             }
         }
         else {
@@ -25,7 +25,7 @@ var roleHarvester = {
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ff00f7'}});
-                    creep.say('H =>');
+                    creep.say('⚡ 🔜');
                 }
             }
         }

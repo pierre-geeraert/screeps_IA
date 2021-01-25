@@ -26,17 +26,17 @@ module.exports.loop = function () {
 
     //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
 
-    if(harvesters.length < 3) {
+    if(harvesters.length < 5) {
         spawner.creep_spawn("harvester");
     }
-    if(upgraders.length < 4) {
+    if(upgraders.length < 4 && harvesters.length < 2) {
         spawner.creep_spawn("upgrader");
     }
-    if(builders.length < 5) {
+    if(builders.length < 5 && harvesters.length < 2) {
         spawner.creep_spawn("builder");
     }
 
-    if(repairs.length < 2) {
+    if(repairs.length < 2 && harvesters.length < 2) {
         spawner.creep_spawn("repairs");
     }
 
