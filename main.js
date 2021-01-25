@@ -29,14 +29,14 @@ module.exports.loop = function () {
     if(harvesters.length < 5) {
         spawner.creep_spawn("harvester");
     }
-    if(upgraders.length < 4 && harvesters.length < 2) {
+    if(upgraders.length < 4 && harvesters.length > 2) {
         spawner.creep_spawn("upgrader");
     }
-    if(builders.length < 5 && harvesters.length < 2) {
+    if(builders.length < 5 && harvesters.length > 2) {
         spawner.creep_spawn("builder");
     }
 
-    if(repairs.length < 2 && harvesters.length < 2) {
+    if(repairs.length < 2 && harvesters.length > 2) {
         spawner.creep_spawn("repairs");
     }
 
