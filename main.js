@@ -2,7 +2,9 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepair = require('role.repair');
+var roleTower = require('role.tower');
 var spawner = require('spawner');
+
 
 
 
@@ -32,7 +34,7 @@ module.exports.loop = function () {
     if(upgraders.length < 4 && harvesters.length > 2) {
         spawner.creep_spawn("upgrader");
     }
-    if(builders.length < 5 && harvesters.length > 2) {
+    if(builders.length < 2 && harvesters.length > 2) {
         spawner.creep_spawn("builder");
     }
 
@@ -70,4 +72,10 @@ module.exports.loop = function () {
             roleRepair.run(creep);
         }
     }
+    
+    // tower power
+    var towers = Game.rooms['W1N1'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+    //console.log(towers);
+    roleTower.defendRoom('W1N1');
+    
 }

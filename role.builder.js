@@ -1,4 +1,6 @@
 var spawner = require('spawner');
+var roleHarvester = require('role.harvester');
+
 
 var roleBuilder = {
 
@@ -26,7 +28,9 @@ var roleBuilder = {
                 }
             }
             else{
+                creep.say('can t build');
                 //creep.memory.role = 'harvester';
+                roleHarvester.run(creep)
             }
 	    }
 	    else {
