@@ -24,11 +24,15 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
 
+    //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
+
     if(harvesters.length < 3) {
         spawner.creep_spawn("harvester");
     }
-
-    if(builders.length < 2) {
+    if(upgraders.length < 4) {
+        spawner.creep_spawn("upgrader");
+    }
+    if(builders.length < 5) {
         spawner.creep_spawn("builder");
     }
 
@@ -37,9 +41,7 @@ module.exports.loop = function () {
     }
 
 
-    if(upgraders.length < 4) {
-        spawner.creep_spawn("upgrader");
-    }
+
 
     
     if(Game.spawns['Spawn1'].spawning) { 

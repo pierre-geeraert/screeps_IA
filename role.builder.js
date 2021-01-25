@@ -18,13 +18,8 @@ var roleBuilder = {
 	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 	        var targets_structures = creep.room.find(FIND_STRUCTURES);
             //shunt for extension
-	        //var targets_extension = Game.getObjectById('d145135d8be7eff');
-            //if(targets_structures.length) {
-            //    if(creep.repair(targets_structures[0]) == ERR_NOT_IN_RANGE) {
-            //        creep.moveTo(targets_structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
-            //        creep.say('repair');
-            //    }
-            //}
+	        //var targets_extension = Game.getObjectById('db456a1d6fdcfe0');
+
             if(targets.length) {
                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});

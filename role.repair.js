@@ -27,6 +27,7 @@ var roleRepair = {
             }
             
             else{
+                creep.say('stuck here')
                 //creep.memory.role = 'harvester';
             }
 	    }
