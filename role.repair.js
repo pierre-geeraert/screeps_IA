@@ -1,6 +1,6 @@
 var spawner = require('spawner');
 
-var roleBuilder = {
+var roleRepair = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -15,21 +15,17 @@ var roleBuilder = {
 	    }
 
 	    if(creep.memory.building) {
-	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+	        //var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 	        var targets_structures = creep.room.find(FIND_STRUCTURES);
             //shunt for extension
 	        //var targets_extension = Game.getObjectById('d145135d8be7eff');
-            //if(targets_structures.length) {
-            //    if(creep.repair(targets_structures[0]) == ERR_NOT_IN_RANGE) {
-            //        creep.moveTo(targets_structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
-            //        creep.say('repair');
-            //    }
-            //}
-            if(targets.length) {
-                if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+            if(targets_structures.length) {
+                if(creep.repair(targets_structures[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets_structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    creep.say('repair');
                 }
             }
+            
             else{
                 //creep.memory.role = 'harvester';
             }
@@ -45,4 +41,4 @@ var roleBuilder = {
 	}
 };
 
-module.exports = roleBuilder;
+module.exports = roleRepair;
