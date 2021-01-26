@@ -9,6 +9,7 @@ var spawner = require('spawner');
 
 
 module.exports.loop = function () {
+    //console.log(Game.spawns['Spawn1'].energy)
     //console.log(spawner.source_id_from_position('alpha'));
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -34,11 +35,11 @@ module.exports.loop = function () {
     if(upgraders.length < 4 && harvesters.length > 2) {
         spawner.creep_spawn("upgrader");
     }
-    if(builders.length < 2 && harvesters.length > 2) {
+    if(builders.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("builder");
     }
 
-    if(repairs.length < 2 && harvesters.length > 2) {
+    if(repairs.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("repairs");
     }
 

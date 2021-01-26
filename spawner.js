@@ -4,12 +4,15 @@ function creep_spawn(type) {
     console.log('Spawning new '+type+': ' + newName);
     //set_creep_to_list(newName);
     var sources_random = set_creep_to_list();
+    if(type=='upgrader'){
+        var sources_random = 'alpha';  
+    }
     if(type=='harvesterX'){//if number of harvester = 0 
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});
     }
     else{
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,CARRY,CARRY,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});
     }
 }
