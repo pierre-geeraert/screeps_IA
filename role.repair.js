@@ -7,7 +7,7 @@ var roleRepair = {
 
 	    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
-            creep.say('🔄 harvest');
+            creep.say('🚧 🔄 harvest');
 	    }
 	    if(!creep.memory.building && creep.store.getFreeCapacity() == 0) {
 	        creep.memory.building = true;
@@ -15,7 +15,14 @@ var roleRepair = {
 	    }
 
 	    if(creep.memory.building) {
-	        var targets_structures = creep.room.find(FIND_STRUCTURES);
+	        var targets_structures = creep.room.find(FIND_STRUCTURES, {
+	           filter: (structure) => {
+	               return structure.hits < 30000 }
+	            
+	        });
+	        
+
+	        
 	        //var targets_structures = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES));
 	        
 	        //console.log(targets[0]);
@@ -24,12 +31,12 @@ var roleRepair = {
             if(targets_structures) {
                 if(creep.repair(targets_structures[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets_structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                    creep.say('repair');
+                    creep.say('🚧repair');
                 }
             }
             
             else{
-                creep.say('stuck here')
+                creep.say('🚧⛔ ')
                 //creep.memory.role = 'harvester';
             }
 	    }

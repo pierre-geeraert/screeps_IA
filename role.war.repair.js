@@ -19,28 +19,29 @@ var roleRepair = {
 	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < 30000
+                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0,1)
                     }
             }));
             if(!targets){
+                console.log('here')
                 var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER)
+                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER)&& structure.hits < (structure.hitsMax)
                     }
                 }));
             }
-	        //console.log(targets);
             //shunt for extension
 	        //var targets_extension = Game.getObjectById('d145135d8be7eff');
             if(targets) {
-                if(creep.repair(targets) == ERR_NOT_IN_RANGE) {
+                if(creep.repair(targets) == ERR_NOT_IN_RANGE || creep.repair(targets) == 0) {
                     creep.moveTo(targets, {visualizePathStyle: {stroke: '#ffffff'}});
-                    creep.say('💣 repair');
+                    creep.say('💣 repair')
+                    creep.repair(targets);
                 }
             }
             
             else{
-                creep.say('💣 stuck here')
+                creep.say('💣⛔ ')
                 //creep.memory.role = 'harvester';
             }
 	    }

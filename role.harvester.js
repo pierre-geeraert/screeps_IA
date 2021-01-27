@@ -33,7 +33,7 @@ var roleHarvester = {
                 }
             }
             else{
-                creep.say('⚡ ⛔ no targets')
+                creep.say('⚡ ⛔ ')
                 roleUpgrader.run(creep)
                 //creep.memory.role = 'upgrader';
             }

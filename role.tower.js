@@ -2,7 +2,7 @@ function defendRoom(roomName,towers) {
     var towers = Game.rooms[roomName].find(
             FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
             
-    console.log(towers[0])
+    //console.log(towers[0])
     var targets = (Game.rooms[roomName].find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER)
