@@ -12,7 +12,7 @@ function creep_spawn(type) {
             {memory: {role: type, creep_direction: sources_random}});
     }
     else{
-        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});
     }
 }
