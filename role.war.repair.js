@@ -1,10 +1,6 @@
 var spawner = require('spawner');
-var roleHarvester = require('role.harvester');
-var roleRepair = require('role.repair');
 
-
-
-var roleBuilder = {
+var roleRepair = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -20,28 +16,30 @@ var roleBuilder = {
 
 	    if(creep.memory.building) {
 	        //var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-	        var targets = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
+	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER) && structure.hits < 30000
+                    }
+            }));
+	        //console.log(targets);
             //shunt for extension
-	        //var targets_extension = Game.getObjectById('db456a1d6fdcfe0');
-            //console.log(targets.length);
-            //creep.moveTo(targets);
+	        //var targets_extension = Game.getObjectById('d145135d8be7eff');
             if(targets) {
-                //console.log("targets length exist")
-                if(creep.build(targets) == ERR_NOT_IN_RANGE) {
+                if(creep.repair(targets) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets, {visualizePathStyle: {stroke: '#ffffff'}});
+                    creep.say('💣 repair');
                 }
             }
+            
             else{
-                creep.say('🚧 can t build');
-                //creep.memory.role = 'repairs';
-                roleRepair.run(creep)
+                creep.say('💣 stuck here')
+                //creep.memory.role = 'harvester';
             }
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-	        var sources_memory = creep.pos.findClosestByPath(FIND_SOURCES);
-	        //function to select a source from his memory
-            //var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
+            var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
             //var Source_down = Game.getObjectById('504d0775111fdb7');
             if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
@@ -50,4 +48,4 @@ var roleBuilder = {
 	}
 };
 
-module.exports = roleBuilder;
+module.exports = roleRepair;

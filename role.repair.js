@@ -15,11 +15,13 @@ var roleRepair = {
 	    }
 
 	    if(creep.memory.building) {
-	        //var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 	        var targets_structures = creep.room.find(FIND_STRUCTURES);
+	        //var targets_structures = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES));
+	        
+	        //console.log(targets[0]);
             //shunt for extension
-	        //var targets_extension = Game.getObjectById('d145135d8be7eff');
-            if(targets_structures.length) {
+	        //var targets_shunt = Game.getObjectById('d4f2fd16311a069');
+            if(targets_structures) {
                 if(creep.repair(targets_structures[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets_structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
                     creep.say('repair');
@@ -33,7 +35,8 @@ var roleRepair = {
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-            var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
+	        var sources_memory = creep.pos.findClosestByPath(FIND_SOURCES);
+            //var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
             //var Source_down = Game.getObjectById('504d0775111fdb7');
             if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});

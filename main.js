@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepair = require('role.repair');
+var roleWarRepair = require('role.war.repair');
 var roleTower = require('role.tower');
 var spawner = require('spawner');
 
@@ -23,7 +24,9 @@ module.exports.loop = function () {
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('builders: ' + builders.length);
     var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairs');
-    console.log('repairs: ' + builders.length);
+    console.log('repairs: ' + repairs.length);
+    var warrepairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrepairs');
+    console.log('warrepairs: ' + warrepairs.length);
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
 
@@ -35,14 +38,17 @@ module.exports.loop = function () {
     if(upgraders.length < 4 && harvesters.length > 2) {
         spawner.creep_spawn("upgrader");
     }
-    if(builders.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
+    if(builders.length < 5 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("builder");
     }
 
-    if(repairs.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
+    if(repairs.length < 4 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("repairs");
     }
 
+    if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
+        spawner.creep_spawn("warrepairs");
+    }
 
 
 
@@ -71,6 +77,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'repairs') {
             roleRepair.run(creep);
+        }
+        if(creep.memory.role == 'warrepairs') {
+            roleWarRepair.run(creep);
         }
     }
     

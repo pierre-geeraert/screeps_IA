@@ -1,4 +1,6 @@
 var spawner = require('spawner');
+var roleUpgrader = require('role.upgrader');
+
 
 var roleHarvester = {
 
@@ -19,11 +21,11 @@ var roleHarvester = {
             //var targets_tower = Game.getObjectById('15369d146d8be78');
             var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
+                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER|| structure.structureType == STRUCTURE_CONTAINER) &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                     }
             }));
-            console.log(creep.pos.findClosestByPath(targets));
+            //console.log(creep.pos.findClosestByPath(targets));
             if(targets) {
                 if(creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets, {visualizePathStyle: {stroke: '#ff00f7'}});
@@ -31,7 +33,9 @@ var roleHarvester = {
                 }
             }
             else{
-                creep.memory.role = 'upgrader';
+                creep.say('⚡ ⛔ no targets')
+                roleUpgrader.run(creep)
+                //creep.memory.role = 'upgrader';
             }
 	    }
 	    else {
