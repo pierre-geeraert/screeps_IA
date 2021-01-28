@@ -38,7 +38,7 @@ module.exports.loop = function () {
     if(upgraders.length < 4 && harvesters.length > 2) {
         spawner.creep_spawn("upgrader");
     }
-    if(builders.length < 5 && harvesters.length > 2 && upgraders.length > 2) {
+    if(builders.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("builder");
     }
 

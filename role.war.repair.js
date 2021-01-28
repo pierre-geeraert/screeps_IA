@@ -19,11 +19,11 @@ var roleRepair = {
 	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0,1)
+                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.1)
                     }
             }));
             if(!targets){
-                console.log('here')
+                //console.log('here')
                 var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER)&& structure.hits < (structure.hitsMax)
@@ -47,7 +47,8 @@ var roleRepair = {
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-            var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
+            //var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
+	        var sources_memory = creep.pos.findClosestByPath(FIND_SOURCES);
             //var Source_down = Game.getObjectById('504d0775111fdb7');
             if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
