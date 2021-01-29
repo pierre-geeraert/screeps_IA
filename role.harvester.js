@@ -9,11 +9,11 @@ var roleHarvester = {
 
 	    if(creep.memory.harvesting && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.harvesting = false;
-            creep.say('🔄 harvest');
+            creep.say('⚡ harvest');
 	    }
 	    if(!creep.memory.harvesting && creep.store.getFreeCapacity() == 0) {
 	        creep.memory.harvesting = true;
-	        creep.say('🚧 transfer');
+	        creep.say('⚡ transfer');
 	    }
 
 	    if(creep.memory.harvesting) {
@@ -40,6 +40,7 @@ var roleHarvester = {
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
+	        //console.log(sources)
 	        var sources_memory = creep.pos.findClosestByPath(FIND_SOURCES);
 	        //function to select a source from his memory
             //var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))

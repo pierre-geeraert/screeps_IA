@@ -17,7 +17,7 @@ var roleRepair = {
 	    if(creep.memory.building) {
 	        var targets_structures = creep.room.find(FIND_STRUCTURES, {
 	           filter: (structure) => {
-	               return structure.hits < (structure.hitsMax*0.1) }
+	               return structure.hits < (structure.hitsMax*0.01) }
 	            
 	        });
 

@@ -7,11 +7,11 @@ var roleRepair = {
 
 	    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
-            creep.say('🔄 harvest');
+            creep.say('💣🔄 harvest');
 	    }
 	    if(!creep.memory.building && creep.store.getFreeCapacity() == 0) {
 	        creep.memory.building = true;
-	        creep.say('🚧 build');
+	        creep.say('💣🚧 build');
 	    }
 
 	    if(creep.memory.building) {
@@ -19,14 +19,14 @@ var roleRepair = {
 	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.1)
+                        return (structure.structureType == STRUCTURE_RAMPART || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.01)
                     }
             }));
             if(!targets){
                 //console.log('here')
                 var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_CONTAINER)&& structure.hits < (structure.hitsMax)
+                        return (structure.structureType == STRUCTURE_RAMPART ||  structure.structureType == STRUCTURE_CONTAINER)&& structure.hits < (structure.hitsMax)
                     }
                 }));
             }

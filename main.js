@@ -10,6 +10,30 @@ var spawner = require('spawner');
 
 
 module.exports.loop = function () {
+    //var pompeur = Game.getObjectById('9143af68bd0ff5a')
+    //var sources_pompeur = Game.getObjectById('89b807750b171d8')
+    //pompeur.say('e')
+    
+    //if(pompeur.harvest(sources_pompeur) == ERR_NOT_IN_RANGE) {
+    //            pompeur.moveTo((sources_pompeur), {visualizePathStyle: {stroke: '#ffaa00'}});
+    //            pompeur.say('⚡ 🔙');
+    //        }
+    
+    
+    
+    
+    //var explorer = Game.getObjectById('3688e98f0ccbc32')
+    //explorer.moveTo(Game.flags.Flag6);
+    
+    
+    //if(explorer.room.controller) {
+    //if(explorer.claimController(explorer.room.controller) == ERR_NOT_IN_RANGE) {
+    //    explorer.moveTo(creep.room.controller);
+    //}
+//}
+    //explorer.Memory.role = 'harvester';
+
+    
     //console.log(Game.spawns['Spawn1'].energy)
     //console.log(spawner.source_id_from_position('alpha'));
     for(var name in Memory.creeps) {
@@ -84,7 +108,7 @@ module.exports.loop = function () {
     }
     
     // tower power
-    var towers = Game.rooms['W1N1'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+    //var towers = Game.rooms['W1N1'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     //console.log(towers);
     roleTower.defendRoom('W1N1');
     

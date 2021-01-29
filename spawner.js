@@ -7,12 +7,12 @@ function creep_spawn(type) {
     if(type=='upgrader'){
         var sources_random = 'alpha';  
     }
-    if(type=='harvesterX'){//if number of harvester = 0 
+    if(type=='SHUNTharvester'){//if number of harvester = 0 
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});
     }
     else{
-        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});
     }
 }
