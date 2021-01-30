@@ -15,11 +15,19 @@ var roleRepair = {
 	    }
 
 	    if(creep.memory.building) {
-	        var targets_structures = creep.room.find(FIND_STRUCTURES, {
-	           filter: (structure) => {
-	               return structure.hits < (structure.hitsMax*0.01) }
-	            
-	        });
+	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_ROAD || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_EXTENSION  ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax*0.01)
+                    }
+            }));
+            if(!targets){
+                //console.log('here')
+                var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_ROAD || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_EXTENSION ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax)
+                    }
+                }));
+            }
 
 	        
 	        //var targets_structures = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES));
@@ -27,9 +35,9 @@ var roleRepair = {
 	        //console.log(targets[0]);
             //shunt for extension
 	        //var targets_shunt = Game.getObjectById('d4f2fd16311a069');
-            if(targets_structures) {
-                if(creep.repair(targets_structures[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets_structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
+            if(targets) {
+                if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                     creep.say('🚧repair');
                 }
             }

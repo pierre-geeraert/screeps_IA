@@ -19,14 +19,14 @@ var roleRepair = {
 	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.01)
+                        return (structure.structureType == STRUCTURE_RAMPART || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.01)
                     }
             }));
             if(!targets){
                 //console.log('here')
                 var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART ||  structure.structureType == STRUCTURE_CONTAINER)&& structure.hits < (structure.hitsMax)
+                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_WALL|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax)
                     }
                 }));
             }

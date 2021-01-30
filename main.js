@@ -11,6 +11,7 @@ var spawner = require('spawner');
 
 
 module.exports.loop = function () {
+
  
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -75,7 +76,7 @@ module.exports.loop = function () {
 
     //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
 
-    if(harvesters.length < 5) {
+    if(harvesters.length < 3) {
         spawner.creep_spawn("harvester","Spawn2");
     }
     if(upgraders.length < 4 && harvesters.length > 2) {
@@ -86,18 +87,18 @@ module.exports.loop = function () {
     }
 
     if(repairs.length < 4 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("repairs","Spawn2");
+        //spawner.creep_spawn("repairs","Spawn2");
     }
 
     if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("warrepairs","Spawn2");
+        //spawner.creep_spawn("warrepairs","Spawn2");
     }
     if(explorer.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("explorer","Spawn2");
+        //spawner.creep_spawn("explorer","Spawn2");
     }
 
 
-    
+    /*
     if(Game.spawns['Spawn1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         Game.spawns['Spawn1'].room.visual.text(
@@ -106,6 +107,7 @@ module.exports.loop = function () {
             Game.spawns['Spawn1'].pos.y, 
             {align: 'left', opacity: 0.8});
     }
+    */
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];

@@ -20,6 +20,18 @@ function creep_spawn(type,spawn) {
         Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
     }
+    
+//🗡
+    if(Game.spawns[spawn].spawning) { 
+        var spawningCreep = Game.creeps[Game.spawns[spawn].spawning.name];
+        Game.spawns[spawn].room.visual.text(
+            '🚼🍼️' + spawningCreep.memory.role,
+            Game.spawns[spawn].pos.x + 1, 
+            Game.spawns[spawn].pos.y, 
+            {align: 'left', opacity: 0.8});
+    }
+    
+    
 }
 
 function say_hello(type){

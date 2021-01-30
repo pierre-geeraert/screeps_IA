@@ -1,3 +1,6 @@
+var roleBuilder = require('role.builder');
+
+
 function Move_to_target(explorer,flag) {
     const path = explorer.pos.findPathTo(19,24, 'W2N2');
     
@@ -9,7 +12,9 @@ function Move_to_target(explorer,flag) {
     if(path.length < 2) {
         //claim_controller(explorer)
         explorer.say('in')
-        explorer.memory.role = 'upgrader';
+        explorer.memory.role = 'builder';
+        roleBuilder.run(explorer);
+
     }
    
 }

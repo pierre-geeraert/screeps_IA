@@ -21,6 +21,7 @@ var roleBuilder = {
 	    if(creep.memory.building) {
 	        //var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 	        var targets = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+	        //console.log(targets)
             //shunt for extension
 	        //var targets_extension = Game.getObjectById('db456a1d6fdcfe0');
             //console.log(targets.length);
