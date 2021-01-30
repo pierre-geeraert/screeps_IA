@@ -1,23 +1,24 @@
 /** @param {Creep} creep **/
-function creep_spawn(type) {
-    var newName = type + Game.time;
+function creep_spawn(type,spawn) {
+    //var spawn = 'Spawn1'
+    var newName = spawn+"_"+ type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
     //set_creep_to_list(newName);
     var sources_random = set_creep_to_list();
     if(type=='upgrader'){
         var sources_random = 'alpha';  
     }
-    if(type=='SHUNTharvester'){//if number of harvester = 0 
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: type, creep_direction: sources_random}});
+    if(spawn=="Spawn2"){//if number of harvester = 0 
+        Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
     }
-    else if(type=='explorer'){ 
+    else if(type=='SHUNTexplorer'){ 
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,CLAIM], newName, 
-            {memory: {role: type, creep_direction_flag: 'Flag1'}});
+            {memory: {role: type}});
     }
     else{
-        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
-            {memory: {role: type, creep_direction: sources_random}});
+        Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
     }
 }
 

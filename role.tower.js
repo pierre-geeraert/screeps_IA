@@ -12,11 +12,11 @@ function defendRoom(roomName,towers) {
             
             
     var towers_repair = Game.getObjectById('6b06fce8cd0881d')
-    var upgrade_target = Game.getObjectById('f4ecbdb494b06b4')
+    //var upgrade_target = Game.getObjectById('f4ecbdb494b06b4')
     //console.log()
     if(targets && towers_repair.store[RESOURCE_ENERGY] > 500){
         //console.log("here")
-        towers_repair.heal(upgrade_target)
+        //towers_repair.heal(upgrade_target)
         towers_repair.repair(targets[0])
         //towers.forEach(tower => tower.repair(targets[0]))
         Game.notify('Repair')
