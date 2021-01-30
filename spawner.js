@@ -11,6 +11,10 @@ function creep_spawn(type) {
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});
     }
+    else if(type=='explorer'){ 
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,CLAIM], newName, 
+            {memory: {role: type, creep_direction_flag: 'Flag1'}});
+    }
     else{
         Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
             {memory: {role: type, creep_direction: sources_random}});

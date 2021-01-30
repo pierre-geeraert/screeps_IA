@@ -4,12 +4,21 @@ var roleBuilder = require('role.builder');
 var roleRepair = require('role.repair');
 var roleWarRepair = require('role.war.repair');
 var roleTower = require('role.tower');
+var roleExplorer = require('role.explorer');
 var spawner = require('spawner');
 
 
 
 
 module.exports.loop = function () {
+    
+
+
+    
+    //var testeur = Game.getObjectById('dd573375c5f2165')
+    //var nbr = parseInt(testeur.memory.creep_direction_flag[4])
+    //console.log(nbr+1)
+    
     //var pompeur = Game.getObjectById('9143af68bd0ff5a')
     //var sources_pompeur = Game.getObjectById('89b807750b171d8')
     //pompeur.say('e')
@@ -22,17 +31,6 @@ module.exports.loop = function () {
     
     
     
-    //var explorer = Game.getObjectById('3688e98f0ccbc32')
-    //explorer.moveTo(Game.flags.Flag6);
-    
-    
-    //if(explorer.room.controller) {
-    //if(explorer.claimController(explorer.room.controller) == ERR_NOT_IN_RANGE) {
-    //    explorer.moveTo(creep.room.controller);
-    //}
-//}
-    //explorer.Memory.role = 'harvester';
-
     
     //console.log(Game.spawns['Spawn1'].energy)
     //console.log(spawner.source_id_from_position('alpha'));
@@ -53,6 +51,9 @@ module.exports.loop = function () {
     console.log('warrepairs: ' + warrepairs.length);
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
+    var explorer = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer');
+    console.log('explorer: ' + explorer.length);
+
 
     //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
 
@@ -73,7 +74,9 @@ module.exports.loop = function () {
     if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("warrepairs");
     }
-
+    if(explorer.length < 1) {
+        spawner.creep_spawn("explorer");
+    }
 
 
     
@@ -104,6 +107,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'warrepairs') {
             roleWarRepair.run(creep);
+        }
+        if(creep.memory.role == 'explorer') {
+            roleExplorer.Move_to_target(creep);
         }
     }
     
