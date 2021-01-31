@@ -54,8 +54,8 @@ module.exports.loop = function () {
     if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("warrepairs","Spawn1");
     }
-    if(explorer.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("explorer","Spawn1");
+    if(explorer.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
+        //spawner.creep_spawn("explorer","Spawn1");
     }
 
     //room 2
@@ -76,24 +76,24 @@ module.exports.loop = function () {
 
     //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
 
-    if(harvesters.length < 3) {
+    if(harvesters.length < 2) {
         spawner.creep_spawn("harvester","Spawn2");
     }
-    if(upgraders.length < 4 && harvesters.length > 2) {
+    if(upgraders.length < 4 && harvesters.length > 1) {
         spawner.creep_spawn("upgrader","Spawn2");
     }
-    if(builders.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
+    if(builders.length < 2 && harvesters.length > 1 && upgraders.length > 2) {
         spawner.creep_spawn("builder","Spawn2");
     }
 
-    if(repairs.length < 4 && harvesters.length > 2 && upgraders.length > 2) {
+    if(repairs.length < 2 && harvesters.length > 1 && upgraders.length > 2) {
         //spawner.creep_spawn("repairs","Spawn2");
     }
 
-    if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
+    if(warrepairs.length < 1 && harvesters.length > 1 && upgraders.length > 2) {
         //spawner.creep_spawn("warrepairs","Spawn2");
     }
-    if(explorer.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
+    if(explorer.length < 3 && harvesters.length > 1 && upgraders.length > 2) {
         //spawner.creep_spawn("explorer","Spawn2");
     }
 
@@ -137,5 +137,5 @@ module.exports.loop = function () {
     //var towers = Game.rooms['W1N1'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     //console.log(towers);
     roleTower.defendRoom('W1N1');
-    
+    roleTower.defendRoom('W2N2');
 }

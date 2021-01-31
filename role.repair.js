@@ -17,7 +17,7 @@ var roleRepair = {
 	    if(creep.memory.building) {
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_ROAD || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_EXTENSION  ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax)
+                        return (structure.structureType == STRUCTURE_ROAD || structure.structureType == STRUCTURE_EXTENSION  ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax)
                     }
             }));
             //console.log(creep.id + targets)

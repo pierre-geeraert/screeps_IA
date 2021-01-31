@@ -9,7 +9,7 @@ function creep_spawn(type,spawn) {
         var sources_random = 'alpha';  
     }
     if(spawn=="Spawn2"){//if number of harvester = 0 
-        Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
+        Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
     }
     else if(type=='SHUNTexplorer'){ 
