@@ -12,7 +12,7 @@ function Move_to_target(explorer,flag) {
     if(path.length < 2) {
         //claim_controller(explorer)
         explorer.say('in')
-        explorer.memory.role = 'builder';
+        //explorer.memory.role = 'builder';
         roleBuilder.run(explorer);
 
     }

@@ -17,14 +17,15 @@ var roleRepair = {
 	    if(creep.memory.building) {
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_ROAD || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_EXTENSION  ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax*0.01)
+                        return (structure.structureType == STRUCTURE_ROAD || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_EXTENSION  ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax)
                     }
             }));
+            //console.log(creep.id + targets)
             if(!targets){
-                //console.log('here')
+               //console.log('here')
                 var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_ROAD || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_EXTENSION ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax)
+                        return (structure.structureType == STRUCTURE_ROAD ||  structure.structureType == STRUCTURE_EXTENSION ||  structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_SPAWN) && structure.hits < (structure.hitsMax)
                     }
                 }));
             }
@@ -36,8 +37,10 @@ var roleRepair = {
             //shunt for extension
 	        //var targets_shunt = Game.getObjectById('d4f2fd16311a069');
             if(targets) {
-                if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                //console.log(creep.repair(targets))
+                if(creep.repair(targets) == ERR_NOT_IN_RANGE) {
+                    //console.log("bot")
+                    creep.moveTo(targets, {visualizePathStyle: {stroke: '#ffffff'}});
                     creep.say('🚧repair');
                 }
             }
