@@ -1,6 +1,7 @@
 var spawner = require('spawner');
 var roleHarvester = require('role.harvester');
 var roleRepair = require('role.repair');
+var function_all = require('function_all');
 
 
 
@@ -39,14 +40,7 @@ var roleBuilder = {
             }
 	    }
 	    else {
-	        var sources = creep.room.find(FIND_SOURCES);
-	        var sources_memory = creep.pos.findClosestByPath(FIND_SOURCES);
-	        //function to select a source from his memory
-            //var sources_memory = Game.getObjectById(spawner.source_id_from_position(creep.memory.creep_direction))
-            //var Source_down = Game.getObjectById('504d0775111fdb7');
-            if(creep.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+	        function_all.find_sources_and_take_energy(creep);
 	    }
 	}
 };

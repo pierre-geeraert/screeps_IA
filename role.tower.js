@@ -22,7 +22,6 @@ function defendRoom(roomName,towers) {
         //towers.forEach(tower => tower.repair(targets[0]))
         Game.notify('Repair')
     }
-    //var roomName = 'W1N1'
     var hostiles = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);
     //shunt to test
     //var hostiles = Game.rooms[roomName].find(FIND_CREEPS);

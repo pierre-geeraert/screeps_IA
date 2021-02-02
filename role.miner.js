@@ -1,8 +1,6 @@
 var spawner = require('spawner');
 var roleUpgrader = require('role.upgrader');
-var functionHarvester = require('function.harvester');
 var function_all = require('function_all');
-
 
 
 var roleHarvester = {
@@ -24,25 +22,18 @@ var roleHarvester = {
             //var targets_tower = Game.getObjectById('15369d146d8be78');
             var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN|| structure.structureType == STRUCTURE_TOWER|| structure.structureType == STRUCTURE_CONTAINER) &&
+                        return (structure.structureType == STRUCTURE_EXTENSION ||structure.structureType == STRUCTURE_STORAGE ||structure.structureType == STRUCTURE_POWER_BANK || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER|| structure.structureType == STRUCTURE_CONTAINER) &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                     }
             }));
-            var targets_storage = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE) &&
-                            structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
-                    }
-            }));
-            //console.log(targets_storage)
             //console.log(creep.pos.findClosestByPath(targets));
             if(targets) {
-                functionHarvester.move_to_and_transfer(creep,targets);
-                
+                if(creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets, {visualizePathStyle: {stroke: '#ff00f7'}});
+                    creep.say('⚡ 🔜');
+                }
             }
             else{
-                functionHarvester.move_to_and_transfer(creep,targets_storage);
-                
                 creep.say('⚡ ⛔ ')
                 roleUpgrader.run(creep)
                 //creep.memory.role = 'upgrader';
