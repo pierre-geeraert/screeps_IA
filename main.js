@@ -50,11 +50,11 @@ module.exports.loop = function () {
     if(upgraders.length < 4 && harvesters.length > 2) {
         spawner.creep_spawn("upgrader","Spawn1");
     }
-    if(builders.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
+    if(builders.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("builder","Spawn1");
     }
 
-    if(repairs.length < 4 && harvesters.length > 2 && upgraders.length > 2) {
+    if(repairs.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("repairs","Spawn1");
     }
 
@@ -62,9 +62,9 @@ module.exports.loop = function () {
         spawner.creep_spawn("warrepairs","Spawn1");
     }
     if(explorer.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("explorer","Spawn1");
+        //.creep_spawn("explorer","Spawn1");
     }
-    if(miner.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
+    if(miner.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("miner","Spawn1");
     }
     //room 2
@@ -90,7 +90,7 @@ module.exports.loop = function () {
     if(Total.length <= 1){
         spawner.creep_spawn("rescue","Spawn1");
     }
-    if(harvesters.length < 3) {
+    if(harvesters.length < 5) {
         spawner.creep_spawn("harvester","Spawn2");
     }
     if(upgraders.length < 5 && harvesters.length > 1) {

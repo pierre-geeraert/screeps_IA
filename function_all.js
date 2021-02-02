@@ -31,4 +31,14 @@ function Clearing_non_existing_creep_memory(){
             }
     }
 }
-module.exports = {retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory};
+function attack_hostile(creep_in){
+    const target = creep_in.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+    if(target) {
+        creep_in.say('🗡 targets')
+        if(creep_in.attack(target) == ERR_NOT_IN_RANGE) {
+            creep_in.moveTo(target);
+        }
+    }
+}
+
+module.exports = {retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile};

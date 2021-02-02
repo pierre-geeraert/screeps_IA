@@ -1,5 +1,7 @@
 //var roleBuilder = require('role.builder');
 var function_all = require('function_all');
+var roleWarRepair = require('role.war.repair');
+
 
 
 var roleRepair = {
@@ -49,6 +51,7 @@ var roleRepair = {
             
             else{
                 creep.say('🚧⛔ ')
+                roleWarRepair.run(creep);
                 //roleBuilder.run(creep);
 
                 //creep.memory.role = 'harvester';

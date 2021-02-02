@@ -30,7 +30,7 @@ var roleHarvester = {
             }));
             var targets_storage = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE) &&
+                        return (structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_LAB) &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                     }
             }));

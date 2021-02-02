@@ -16,9 +16,13 @@ function creep_spawn(type,spawn) {
         Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
     }
-    else if(type=='warrepairs'){ 
+    else if(type=='warrepairs'&& spawn=="Spawn1"){ 
         Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,ATTACK], newName, 
-            {memory: {role: type}});
+            {memory: {role: type,spawn_location:spawn}});
+    }
+    else if(type=='warrepairs' && spawn=="Spawn2"){ 
+        console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE,ATTACK], newName, 
+            {memory: {role: type,spawn_location:spawn}}));
     }
     else{
         Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
