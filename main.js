@@ -16,8 +16,8 @@ var humanRessources = require('human_ressources');
 module.exports.loop = function () {
     function_all.Clearing_non_existing_creep_memory();
  
-    humanRessources.user_counting("Spawn1");
-    humanRessources.user_counting("Spawn2");
+    //humanRessources.user_counting("Spawn1");
+    //humanRessources.user_counting("Spawn2");
     //room 1
     console.log('=======================================================');
     var Total = _.filter(Game.creeps, (creep) => creep.memory.spawn_location == "Spawn1");
@@ -62,7 +62,7 @@ module.exports.loop = function () {
         spawner.creep_spawn("warrepairs","Spawn1");
     }
     if(explorer.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
-        //.creep_spawn("explorer","Spawn1");
+        spawner.creep_spawn("explorer","Spawn1");
     }
     if(miner.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
         spawner.creep_spawn("miner","Spawn1");

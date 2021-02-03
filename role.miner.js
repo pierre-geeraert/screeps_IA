@@ -23,16 +23,16 @@ var roleHarvester = {
             //var targets_tower = Game.getObjectById('15369d146d8be78');
             var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||structure.structureType == STRUCTURE_STORAGE ||structure.structureType == STRUCTURE_POWER_BANK || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER|| structure.structureType == STRUCTURE_CONTAINER) &&
+                        return (structure.structureType == STRUCTURE_STORAGE) &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                     }
             }));
-            var miner_container = Game.getObjectById('3adf3c5565621fa');
+            var miner_container = Game.getObjectById('e24f0b9dfc2c819');
             //console.log(creep.pos.findClosestByPath(targets));
-            if(miner_container) {
-                console.log(creep.transfer(miner_container, RESOURCE_ENERGY))
-                if(creep.transfer(miner_container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(miner_container, {visualizePathStyle: {stroke: '#ff00f7'}});
+            if(targets) {
+                //console.log(creep.transfer(targets, RESOURCE_ENERGY))
+                if(creep.transfer(targets, creep.memory.mineralType) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets, {visualizePathStyle: {stroke: '#ff00f7'}});
                     creep.say('⚡ 🔜');
                 }
             }

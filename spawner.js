@@ -8,7 +8,7 @@ function creep_spawn(type,spawn) {
     if(type=='upgrader'){
         var sources_random = 'alpha';  
     }
-    if(type=="SHUNTrescue"){//if number of harvester = 0 
+    if(type=="rescue"){//if number of harvester = 0 
         Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'harvester',spawn_location:spawn, creep_direction: sources_random}});
     }

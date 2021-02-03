@@ -16,11 +16,25 @@ function retrieve_from_tombstone(creep){
 }
 
 
-function find_sources_and_take_energy(creep_in){
+function find_sources_and_take_energy(creep_in,custom_sources){
     var sources_memory = creep_in.pos.findClosestByPath(FIND_SOURCES);
-	if(creep_in.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
-        creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
-        creep_in.say('⚡ 🔙');
+    if(custom_sources){
+         var sources_memory = creep_in.pos.findClosestByPath(creep_in.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER ||structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_LINK);
+                    }
+            }));
+        if(creep_in.withdraw(sources_memory,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
+            creep_in.say('⚡ 🔙');
+        }
+    }
+    //creep_in.say(creep_in.harvest(sources_memory))
+    if(!custom_sources){
+    	if(creep_in.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
+            creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
+            creep_in.say('⚡ 🔙');
+        }
     }
 }
 function Clearing_non_existing_creep_memory(){
