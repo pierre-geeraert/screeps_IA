@@ -1,11 +1,4 @@
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('human_ressources');
- * mod.thing == 'a thing'; // true
- */
+var spawner = require('spawner');
 
 function user_regulation(Room_in,
 quota_Harvesters,
@@ -15,27 +8,71 @@ quota_warrepairs,
 quota_upgraders,
 quota_explorer,
 quota_miner){
+const [Total,harvesters,builders,repairs,warrepairs,upgraders,explorer,miner,rescue,fighter] = user_counting(room_in=Room_in,display_in_console=0);
+//console.log(Total)
+
+    if(Total.length <= 1){
+        spawner.creep_spawn("rescue",Room_in);
+    }
+    if(harvesters.length < quota_Harvesters) {
+        console.log('inferior to '+quota_Harvesters)
+        spawner.creep_spawn("harvester",Room_in);
+    }
+    if(upgraders.length < quota_upgraders && harvesters.length > 2) {
+        spawner.creep_spawn(type="upgrader",spawn=Room_in);
+    }
+    if(builders.length < quota_builders && harvesters.length > 2 && upgraders.length > 2) {
+        spawner.creep_spawn("builder",Room_in);
+    }
+
+    if(repairs.length < quota_repairs && harvesters.length > 2 && upgraders.length > 2) {
+        spawner.creep_spawn("repairs",Room_in);
+    }
+
+    if(warrepairs.length < quota_warrepairs && harvesters.length > 2 && upgraders.length > 2) {
+        spawner.creep_spawn("warrepairs",Room_in);
+    }
+    if(explorer.length < quota_explorer && harvesters.length > 2 && upgraders.length > 2) {
+        spawner.creep_spawn("explorer",Room_in);
+    }
+    if(miner.length < quota_miner && harvesters.length > 2 && upgraders.length > 2) {
+        spawner.creep_spawn("miner",Room_in);
+    }
+
+
+
+
 
 }
-function user_counting(room_in){
+function user_counting(room_in,display_in_console){
     number_of_room = (room_in[5])
-    console.log('=======================================================');
     var Total = _.filter(Game.creeps, (creep) => creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : Total: ' + Total.length);
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : Harvesters: ' + harvesters.length);
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : builders: ' + builders.length);
     var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairs' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : repairs: ' + repairs.length);
     var warrepairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrepairs' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : warrepairs: ' + warrepairs.length);
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : upgraders: ' + upgraders.length);
     var explorer = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : explorer: ' + explorer.length);
     var miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner' && creep.memory.spawn_location == room_in);
-    console.log('Room '+number_of_room+' : miner: ' + explorer.length);
-    console.log('=======================================================');
-}
-module.exports = {user_counting};
+    var rescue = _.filter(Game.creeps, (creep) => creep.memory.role == 'rescue' && creep.memory.spawn_location == room_in);
+    var fighter = _.filter(Game.creeps, (creep) => creep.memory.role == 'fighter' && creep.memory.spawn_location == room_in);
+        
+        if(display_in_console){
+            console.log('=======================================================');
+            console.log('Room '+number_of_room+' : Total: ' + Total.length);
+            console.log('Room '+number_of_room+' : Harvesters: ' + harvesters.length);
+            console.log('Room '+number_of_room+' : builders: ' + builders.length);
+            console.log('Room '+number_of_room+' : repairs: ' + repairs.length);
+            console.log('Room '+number_of_room+' : warrepairs: ' + warrepairs.length);
+            console.log('Room '+number_of_room+' : upgraders: ' + upgraders.length);
+            console.log('Room '+number_of_room+' : explorer: ' + explorer.length);
+            console.log('Room '+number_of_room+' : miner: ' + explorer.length);
+            console.log('Room '+number_of_room+' : rescue: ' + rescue.length);
+            console.log('Room '+number_of_room+' : fighter: ' + fighter.length);
+            console.log('=======================================================');
+        }
+    
+    return [Total,harvesters,builders,repairs,warrepairs,upgraders,explorer,miner,rescue,fighter]
+            
+    }
+module.exports = {user_counting,user_regulation};

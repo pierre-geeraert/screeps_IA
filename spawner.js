@@ -4,29 +4,29 @@ function creep_spawn(type,spawn) {
     var newName = spawn+"_"+ type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
     //set_creep_to_list(newName);
-    var sources_random = set_creep_to_list();
+    //var sources_random = set_creep_to_list();
     if(type=='upgrader'){
-        var sources_random = 'alpha';  
+        //var sources_random = 'alpha';  
     }
     if(type=="rescue"){//if number of harvester = 0 
         Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'harvester',spawn_location:spawn, creep_direction: sources_random}});
+            {memory: {role: 'harvester',spawn_location:spawn,priority:1}});
     }
     if(spawn=="SHUNTSpawn2"){//if number of harvester = 0 
         Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
+            {memory: {role: type,spawn_location:spawn,priority:1}});
     }
     else if(type=='warrepairs'&& spawn=="Spawn1"){ 
         Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,ATTACK], newName, 
-            {memory: {role: type,spawn_location:spawn}});
+            {memory: {role: type,spawn_location:spawn,priority:1}});
     }
     else if(type=='warrepairs' && spawn=="Spawn2"){ 
         console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE,ATTACK], newName, 
-            {memory: {role: type,spawn_location:spawn}}));
+            {memory: {role: type,spawn_location:spawn,priority:1}}));
     }
     else{
         Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
-            {memory: {role: type,spawn_location:spawn, creep_direction: sources_random}});
+            {memory: {role: type,spawn_location:spawn,priority:1}});
     }
     
 //🗡
@@ -51,15 +51,8 @@ function creep_spawn(type,spawn) {
 
     
 
-function set_creep_to_list(creep_name){
-    if(Math.floor(Math.random()*2)){
-        return 'alpha';
-    }
-    else{
-       return 'beta';
-    }
-}
-function source_id_from_position(position){
+
+function DISABLEsource_id_from_position(position){
     if(position=='alpha'){
         return '1d190775111f525';
     }
@@ -73,5 +66,5 @@ function source_id_from_position(position){
 
 
 
-module.exports = {creep_spawn,set_creep_to_list,source_id_from_position};
+module.exports = {creep_spawn,DISABLEsource_id_from_position};
 //module.exports = spawner;

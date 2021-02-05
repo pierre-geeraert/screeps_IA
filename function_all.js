@@ -21,12 +21,15 @@ function find_sources_and_take_energy(creep_in,custom_sources){
     if(custom_sources){
          var sources_memory = creep_in.pos.findClosestByPath(creep_in.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_CONTAINER ||structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_LINK);
+                        return (structure.structureType == STRUCTURE_CONTAINER ||structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_LINK)&&
+                            structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0;;
                     }
             }));
-        if(creep_in.withdraw(sources_memory,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
-            creep_in.say('⚡ 🔙');
+        if(sources_memory){
+            if(creep_in.withdraw(sources_memory,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep_in.say('⚡ 🔙C');
+            }
         }
     }
     //creep_in.say(creep_in.harvest(sources_memory))
@@ -45,8 +48,12 @@ function Clearing_non_existing_creep_memory(){
             }
     }
 }
-function attack_hostile(creep_in){
+function find_hostile_in_room(creep_in){
     const target = creep_in.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+    return target
+}
+
+function attack_hostile(creep_in,target){
     if(target) {
         creep_in.say('🗡 targets')
         if(creep_in.attack(target) == ERR_NOT_IN_RANGE) {
@@ -55,4 +62,13 @@ function attack_hostile(creep_in){
     }
 }
 
-module.exports = {retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile};
+function random(){
+    if(Math.floor(Math.random()*2)){
+        return 'alpha';
+    }
+    else{
+       return 'beta';
+    }
+}
+
+module.exports = {retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile,find_hostile_in_room,random};

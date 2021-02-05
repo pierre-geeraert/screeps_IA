@@ -6,8 +6,13 @@ var roleRepair = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        function_all.attack_hostile(creep);
-	    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
+        creep.say('e')
+        var targets_hostiles = function_all.find_hostile_in_room(creep)
+        if(targets_hostiles){
+            function_all.attack_hostile(creep,targets_hostiles);
+	    }
+	    else{
+        if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
             creep.say('💣🔄 harvest');
 	    }
@@ -21,7 +26,7 @@ var roleRepair = {
 	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.01)
+                        return (structure.structureType == STRUCTURE_RAMPART || !(structure.structureType == STRUCTURE_WALL)|| structure.structureType == STRUCTURE_TOWER) && structure.hits < (structure.hitsMax*0.001)
                     }
             }));
             if(!targets){
@@ -50,7 +55,7 @@ var roleRepair = {
 	    else {
 	        function_all.find_sources_and_take_energy(creep,1);
 	    }
-	}
+	}}
 };
 
 module.exports = roleRepair;

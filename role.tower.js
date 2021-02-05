@@ -1,27 +1,34 @@
 function defendRoom(roomName,towers) {
-    Game.notify('coucou')
+    //Game.notify('coucou')
     var towers = Game.rooms[roomName].find(
             FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
             
     //console.log(towers)
     var targets = (Game.rooms[roomName].find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_ROAD) && structure.hits < (structure.hitsMax*0.1)
+                        return (structure.structureType == STRUCTURE_WALL ||structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_ROAD) && structure.hits < (structure.hitsMax*0.1)
                     }
             }))
-            
-            
-    var towers_repair = Game.getObjectById('6b06fce8cd0881d')
+    //shunt to target just the rempart
+    //var targets = (Game.rooms[roomName].find(FIND_STRUCTURES, {
+    //                filter: (structure) => {
+    //                    return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < (structure.hitsMax*0.1)
+    //                }
+    //        }))
     
+            
+            
+    //var towers_repair = Game.getObjectById('6b06fce8cd0881d')
+    for(tower of towers){
+        //console.log(tower.store[RESOURCE_ENERGY])
+        if(targets && tower.store[RESOURCE_ENERGY] > 700){
+            tower.repair(targets[0])
+            Game.notify('Repair')
+    }
+    }
     //var upgrade_target = Game.getObjectById('f4ecbdb494b06b4')
     //console.log()
-    if(targets && towers_repair.store[RESOURCE_ENERGY] > 500){
-        //console.log("here")
-        //towers_repair.heal(upgrade_target)
-        //towers_repair.repair(targets[0])
-        //towers.forEach(tower => tower.repair(targets[0]))
-        Game.notify('Repair')
-    }
+    
     var hostiles = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);
     //shunt to test
     //var hostiles = Game.rooms[roomName].find(FIND_CREEPS);

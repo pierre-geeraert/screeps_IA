@@ -16,102 +16,132 @@ var humanRessources = require('human_ressources');
 module.exports.loop = function () {
     function_all.Clearing_non_existing_creep_memory();
  
-    //humanRessources.user_counting("Spawn1");
-    //humanRessources.user_counting("Spawn2");
-    //room 1
-    console.log('=======================================================');
-    var Total = _.filter(Game.creeps, (creep) => creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: Total: ' + Total.length);
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: Harvesters: ' + harvesters.length);
+    humanRessources.user_counting("Spawn1",display_in_console=1);
+    humanRessources.user_counting("Spawn2",display_in_console=1);
+    
+    humanRessources.user_regulation(
+        Room_in="Spawn1",
+        quota_Harvesters=5,
+        quota_builders=1,
+        quota_repairs=3,
+        quota_warrepairs=2,
+        quota_upgraders=4,
+        quota_explorer=1,
+        quota_miner=1)
+    
+    humanRessources.user_regulation(
+        Room_in="Spawn2",
+        quota_Harvesters=7,
+        quota_builders=2,
+        quota_repairs=3,
+        quota_warrepairs=2,
+        quota_upgraders=5,
+        quota_explorer=3,
+        quota_miner=1)
+        
+    
+    if(0){
+        //room 1
+        console.log('=======================================================');
+        var Total = _.filter(Game.creeps, (creep) => creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: Total: ' + Total.length);
+        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: Harvesters: ' + harvesters.length);
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: builders: ' + builders.length);
-    var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairs' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: repairs: ' + repairs.length);
-    var warrepairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrepairs' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: warrepairs: ' + warrepairs.length);
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: upgraders: ' + upgraders.length);
-    var explorer = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: explorer: ' + explorer.length);
-    var miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner' && creep.memory.spawn_location == "Spawn1");
-    console.log('Room 1: miner: ' + explorer.length);
-    console.log('=======================================================');
-
-    //console.log(Game.creeps[0]);
-
-    if(Total.length <= 1){
-        spawner.creep_spawn("rescue","Spawn1");
+        console.log('Rooms 1: builders: ' + builders.length);
+        var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairs' && creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: repairs: ' + repairs.length);
+        var warrepairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrepairs' && creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: warrepairs: ' + warrepairs.length);
+        var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader' && creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: upgraders: ' + upgraders.length);
+        var explorer = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer' && creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: explorer: ' + explorer.length);
+        var miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner' && creep.memory.spawn_location == "Spawn1");
+        console.log('Rooms 1: miner: ' + explorer.length);
+        console.log('=======================================================');
+    
+        //console.log(Game.creeps[0]);
+        if(0){
+            if(Total.length <= 1){
+                spawner.creep_spawn("rescue","Spawn1");
+            }
+            if(harvesters.length < 5) {
+                console.log('inferior to 5')
+                spawner.creep_spawn("harvester","Spawn1");
+            }
+            if(upgraders.length < 4 && harvesters.length > 2) {
+                spawner.creep_spawn(type="upgrader",spawn="Spawn1");
+            }
+            if(builders.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
+                spawner.creep_spawn("builder","Spawn1");
+            }
+        
+            if(repairs.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
+                spawner.creep_spawn("repairs","Spawn1");
+            }
+        
+            if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
+                spawner.creep_spawn("warrepairs","Spawn1");
+            }
+            if(explorer.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
+                spawner.creep_spawn("explorer","Spawn1");
+            }
+            if(miner.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
+                spawner.creep_spawn("miner","Spawn1");
+            }
+        }
+    }    
+    if(0){
+        //room 2
+        console.log('=======================================================');
+        var Total = _.filter(Game.creeps, (creep) => creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: Total: ' + Total.length);
+        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2 Harvesters: ' + harvesters.length);
+        var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: builders: ' + builders.length);
+        var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairs' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: repairs: ' + repairs.length);
+        var warrepairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrepairs' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: warrepairs: ' + warrepairs.length);
+        var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: upgraders: ' + upgraders.length);
+        var explorer = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: explorer: ' + explorer.length);
+        var miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner' && creep.memory.spawn_location == "Spawn2");
+        console.log('Rooms 2: miner: ' + explorer.length);
+        console.log('=======================================================');
+    
+        //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
+    
+        if(Total.length <= 1){
+            spawner.creep_spawn("rescue","Spawn2");
+        }
+        if(harvesters.length < 7) {
+            spawner.creep_spawn("harvester","Spawn2");
+        }
+        if(upgraders.length < 5 && harvesters.length > 1) {
+            spawner.creep_spawn("upgrader","Spawn2");
+        }
+        if(builders.length < 2 && harvesters.length > 1 && upgraders.length > 2) {
+            spawner.creep_spawn("builder","Spawn2");
+        }
+    
+        if(repairs.length < 3 && harvesters.length > 1 && upgraders.length > 2) {
+            spawner.creep_spawn("repairs","Spawn2");
+        }
+    
+        if(warrepairs.length < 2 && harvesters.length > 1 && upgraders.length > 2) {
+            spawner.creep_spawn("warrepairs","Spawn2");
+        }
+        if(explorer.length < 3 && harvesters.length > 1 && upgraders.length > 2) {
+            //spawner.creep_spawn("explorer","Spawn2");
+        }
+        if(miner.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
+            spawner.creep_spawn("miner","Spawn2");
+        }
     }
-    if(harvesters.length < 5) {
-        console.log('inferior to 5')
-        spawner.creep_spawn("harvester","Spawn1");
-    }
-    if(upgraders.length < 4 && harvesters.length > 2) {
-        spawner.creep_spawn("upgrader","Spawn1");
-    }
-    if(builders.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("builder","Spawn1");
-    }
-
-    if(repairs.length < 3 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("repairs","Spawn1");
-    }
-
-    if(warrepairs.length < 2 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("warrepairs","Spawn1");
-    }
-    if(explorer.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("explorer","Spawn1");
-    }
-    if(miner.length < 1 && harvesters.length > 2 && upgraders.length > 2) {
-        spawner.creep_spawn("miner","Spawn1");
-    }
-    //room 2
-    console.log('=======================================================');
-    var Total = _.filter(Game.creeps, (creep) => creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2: Total: ' + Total.length);
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2 Harvesters: ' + harvesters.length);
-    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder' && creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2: builders: ' + builders.length);
-    var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairs' && creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2: repairs: ' + repairs.length);
-    var warrepairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrepairs' && creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2: warrepairs: ' + warrepairs.length);
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader' && creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2: upgraders: ' + upgraders.length);
-    var explorer = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer' && creep.memory.spawn_location == "Spawn2");
-    console.log('Room 2: explorer: ' + explorer.length);
-    console.log('=======================================================');
-
-    //console.log(_.filter(Game.structure, (structure) => structure.structureType == STRUCTURE_TOWER));
-
-    if(Total.length <= 1){
-        spawner.creep_spawn("rescue","Spawn1");
-    }
-    if(harvesters.length < 5) {
-        spawner.creep_spawn("harvester","Spawn2");
-    }
-    if(upgraders.length < 5 && harvesters.length > 1) {
-        spawner.creep_spawn("upgrader","Spawn2");
-    }
-    if(builders.length < 2 && harvesters.length > 1 && upgraders.length > 2) {
-        spawner.creep_spawn("builder","Spawn2");
-    }
-
-    if(repairs.length < 3 && harvesters.length > 1 && upgraders.length > 2) {
-        spawner.creep_spawn("repairs","Spawn2");
-    }
-
-    if(warrepairs.length < 2 && harvesters.length > 1 && upgraders.length > 2) {
-        spawner.creep_spawn("warrepairs","Spawn2");
-    }
-    if(explorer.length < 3 && harvesters.length > 1 && upgraders.length > 2) {
-        //spawner.creep_spawn("explorer","Spawn2");
-    }
-
-
     /*
     if(Game.spawns['Spawn1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
