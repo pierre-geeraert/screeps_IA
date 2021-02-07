@@ -1,4 +1,4 @@
-function defendRoom(roomName,towers) {
+function defendRoom(roomName,block_repair) {
     //Game.notify('coucou')
     var towers = Game.rooms[roomName].find(
             FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
@@ -21,7 +21,7 @@ function defendRoom(roomName,towers) {
     //var towers_repair = Game.getObjectById('6b06fce8cd0881d')
     for(tower of towers){
         //console.log(tower.store[RESOURCE_ENERGY])
-        if(targets && tower.store[RESOURCE_ENERGY] > 700){
+        if(targets && tower.store[RESOURCE_ENERGY] > 700 && !block_repair){
             tower.repair(targets[0])
             Game.notify('Repair')
     }

@@ -14,6 +14,7 @@ var humanRessources = require('human_ressources');
 
 
 module.exports.loop = function () {
+    //clear non existing creep memory
     function_all.Clearing_non_existing_creep_memory();
  
     humanRessources.user_counting("Spawn1",display_in_console=1);
@@ -26,17 +27,17 @@ module.exports.loop = function () {
         quota_repairs=3,
         quota_warrepairs=2,
         quota_upgraders=4,
-        quota_explorer=1,
+        quota_explorer=0,
         quota_miner=1)
     
     humanRessources.user_regulation(
         Room_in="Spawn2",
-        quota_Harvesters=7,
+        quota_Harvesters=5,
         quota_builders=2,
         quota_repairs=3,
         quota_warrepairs=2,
         quota_upgraders=5,
-        quota_explorer=3,
+        quota_explorer=0,
         quota_miner=1)
         
     
@@ -142,16 +143,7 @@ module.exports.loop = function () {
             spawner.creep_spawn("miner","Spawn2");
         }
     }
-    /*
-    if(Game.spawns['Spawn1'].spawning) { 
-        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-        Game.spawns['Spawn1'].room.visual.text(
-            '🛠️' + spawningCreep.memory.role,
-            Game.spawns['Spawn1'].pos.x + 1, 
-            Game.spawns['Spawn1'].pos.y, 
-            {align: 'left', opacity: 0.8});
-    }
-    */
+    
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -182,8 +174,6 @@ module.exports.loop = function () {
     }   
     
     // tower power
-    //var towers = Game.rooms['W1N1'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-    //console.log(towers);
-    roleTower.defendRoom('W1N1');
-    roleTower.defendRoom('W2N2');
+    roleTower.defendRoom('W1N1',block_repair=1);
+    roleTower.defendRoom('W2N2',block_repair=1);
 }
