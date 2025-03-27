@@ -18,28 +18,29 @@ module.exports.loop = function () {
     function_all.Clearing_non_existing_creep_memory();
  
     humanRessources.user_counting("Spawn1",display_in_console=1);
-    humanRessources.user_counting("Spawn2",display_in_console=1);
+    //humanRessources.user_counting("Spawn2",display_in_console=1);
     
     humanRessources.user_regulation(
         Room_in="Spawn1",
-        quota_Harvesters=5,
-        quota_builders=1,
-        quota_repairs=3,
-        quota_warrepairs=2,
-        quota_upgraders=4,
+        quota_Harvesters=2,
+        quota_super_Harvesters=1,
+        quota_builders=4,
+        quota_repairs=1,
+        quota_warrepairs=0,
+        quota_upgraders=2,
         quota_explorer=0,
-        quota_miner=1)
+        quota_miner=0)
     
-    humanRessources.user_regulation(
-        Room_in="Spawn2",
-        quota_Harvesters=5,
-        quota_builders=2,
-        quota_repairs=3,
-        quota_warrepairs=2,
-        quota_upgraders=5,
-        quota_explorer=0,
-        quota_miner=1)
-        
+    //humanRessources.user_regulation(
+    //    Room_in="Spawn2",
+    //    quota_Harvesters=5,
+    //    quota_builders=2,
+    //    quota_repairs=3,
+    //    quota_warrepairs=2,
+    //    quota_upgraders=5,
+    //    quota_explorer=0,
+    //    quota_miner=1)
+    //    //
     
     if(0){
         //room 1
@@ -174,6 +175,6 @@ module.exports.loop = function () {
     }   
     
     // tower power
-    roleTower.defendRoom('W1N1',block_repair=1);
-    roleTower.defendRoom('W2N2',block_repair=1);
+    roleTower.defendRoom('W7N2',block_repair=0);
+    //roleTower.defendRoom('W2N2',block_repair=1);
 }

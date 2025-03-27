@@ -6,6 +6,7 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        //console.log('Im here1')
          if(creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.upgrading = false;
             creep.say('🆙 🔄 harvest');
@@ -22,7 +23,7 @@ var roleUpgrader = {
             }
 	    }
 	    else {
-	        function_all.find_sources_and_take_energy(creep,1);
+	        function_all.find_sources_and_take_energy(creep,0);
 	    }
 	}
 };

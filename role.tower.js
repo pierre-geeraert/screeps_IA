@@ -1,8 +1,7 @@
 function defendRoom(roomName,block_repair) {
     //Game.notify('coucou')
-    var towers = Game.rooms[roomName].find(
-            FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-            
+    var towers = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+
     //console.log(towers)
     var targets = (Game.rooms[roomName].find(FIND_STRUCTURES, {
                     filter: (structure) => {
