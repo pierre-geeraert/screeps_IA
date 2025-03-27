@@ -6,13 +6,10 @@ function creep_spawn(type,spawn) {
     //set_creep_to_list(newName);
     //var sources_random = set_creep_to_list();
     if(type=='upgrader'){
-        //var sources_random = 'alpha'; 
-        //console.log('I am an upgrader')
-        Game.spawns[spawn].spawnCreep([WORK,CARRY,CARRY,MOVE], newName, 
-            {memory: {role: type,upgrading:true,spawn_location:spawn,priority:1}});
+        //var sources_random = 'alpha';  
     }
     if(type=="rescue"){//if number of harvester = 0 
-        Game.spawns[spawn].spawnCreep([WORK,CARRY,CARRY,MOVE], newName, 
+        Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'harvester',spawn_location:spawn,priority:1}});
     }
     if(spawn=="SHUNTSpawn2"){//if number of harvester = 0 
@@ -28,7 +25,7 @@ function creep_spawn(type,spawn) {
             {memory: {role: type,spawn_location:spawn,priority:1}}));
     }
     else{
-        Game.spawns[spawn].spawnCreep([WORK,CARRY,CARRY,MOVE], newName, 
+        Game.spawns[spawn].spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}});
     }
     
