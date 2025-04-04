@@ -24,6 +24,19 @@ function creep_spawn(type,spawn) {
         console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE,ATTACK], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}}));
     }
+    else if(type=='repair' && spawn=="Spawn1"){ 
+        console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1}}));
+    }
+    else if(type=='builder' && spawn=="Spawn1"){ 
+        console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1}}));
+    }
+    else if(type=='harvester' && spawn=="Spawn1"){ 
+        console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1}}));
+    }
+
     else{
         Game.spawns[spawn].spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}});
