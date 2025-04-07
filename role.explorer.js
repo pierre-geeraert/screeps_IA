@@ -3,10 +3,10 @@ var function_all = require('function_all');
 
 
 function Move_to_target(explorer,flag) {
-    const path = explorer.pos.findPathTo(23,41, 'W8N2');
+    const path = explorer.pos.findPathTo(44,31, 'W7N1');
     //const path = explorer.pos.findPathTo(23, 31, 'W1N7');
     
-    explorer.moveTo(new RoomPosition(23, 41, 'W8N2'));
+    explorer.moveTo(new RoomPosition(44,31, 'W7N1'));
     //explorer.moveTo(new RoomPosition(16, 28, 'W7N8'));
     
     if(path.length > 0) {

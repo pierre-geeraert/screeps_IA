@@ -1,19 +1,34 @@
 /** @param {Creep} creep **/
 function creep_spawn(type,spawn) {
-    //var spawn = 'Spawn1'
     var newName = spawn+"_"+ type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
-    //set_creep_to_list(newName);
-    //var sources_random = set_creep_to_list();
-    if(type=='upgrader'){
+
+    
+    var testIfCanSpawnLevel3 = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], 'Worker1', { dryRun: true });
+    var testIfCanSpawnLevel2 = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], 'Worker1', { dryRun: true });
+    var testIfCanSpawnLevel1 = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], 'Worker1', { dryRun: true });
+    
+    if (testIfCanSpawnLevel3 == 0){
+        console.log('il est -6')
+        Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1}});
+    }else if(testIfCanSpawnLevel3 != 0 && testIfCanSpawnLevel2 == 0){
+        Game.spawns[spawn].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1}});
+    }else if(testIfCanSpawnLevel3 != 0 && testIfCanSpawnLevel2 != 0 && testIfCanSpawnLevel1 == 0){
+        Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1}});}
+
+
+if(0){    if(type=='upgrader'){
         //var sources_random = 'alpha';  
     }
     if(type=="rescue"){//if number of harvester = 0 
         Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'harvester',spawn_location:spawn,priority:1}});
+            {memory: {role: 'rescue',spawn_location:spawn,priority:1}});
     }
-    if(spawn=="SHUNTSpawn2"){//if number of harvester = 0 
-        Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
+    if(type=='warrepairs'&&spawn=="explorer"){ 
+        Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE,MOVE,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}});
     }
     else if(type=='warrepairs'&& spawn=="Spawn1"){ 
@@ -32,7 +47,7 @@ function creep_spawn(type,spawn) {
         console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}}));
     }
-    else if(type=='harvester' && spawn=="Spawn1"){ 
+    else if(type=='SHUNTharvester' && spawn=="Spawn1"){ 
         console.log(Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}}));
     }
@@ -40,7 +55,7 @@ function creep_spawn(type,spawn) {
     else{
         Game.spawns[spawn].spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1}});
-    }
+    }}
     
 //🗡
     if(Game.spawns[spawn].spawning) { 

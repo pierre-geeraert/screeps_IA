@@ -7,7 +7,8 @@ quota_repairs,
 quota_warrepairs,
 quota_upgraders,
 quota_explorer,
-quota_miner){
+quota_miner,
+quota_rescue){
     
 const [Total,harvesters,builders,repairs,warrepairs,upgraders,explorer,miner,rescue,fighter] = user_counting(room_in=Room_in,display_in_console=0);
     if(Total.length <= 1){spawner.creep_spawn("rescue",Room_in);}
