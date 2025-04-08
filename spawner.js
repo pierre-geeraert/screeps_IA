@@ -3,13 +3,37 @@ function creep_spawn(type,spawn) {
     var newName = spawn+"_"+ type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
 
+    array_body = [WORK,CARRY,MOVE]
+    //console.log(array_body)
+    //console.log(array_body[0])
+    energy_available = Game.rooms["W7N2"].energyAvailable; 
+    //console.log(energy_available);
+    body_parts_number = energy_available/51;
+    //console.log(body_parts_number)
+    trunc_body_parts_number = Math.trunc(body_parts_number);
+    //console.log(trunc_body_parts_number)
+
+    let final_array = array_body; 
+    while (final_array.length < trunc_body_parts_number-2){
+        final_array.push(array_body[Math.floor(Math.random() * 2)]);
+        console.log(final_array)
+        
+    }
+    var testIfCanSpawn = Game.spawns['Spawn1'].spawnCreep(final_array, 'Worker1', { dryRun: true });
+    console.log(testIfCanSpawn);
+    if(testIfCanSpawn==0){
+        console.log("can spawn: "+final_array)
+        console.log(Game.spawns[spawn].spawnCreep(final_array, newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1,level:final_array.length}}));
+    }
+
     var testIfCanSpawnLevel4 = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], 'Worker1', { dryRun: true });
     var testIfCanSpawnLevel3 = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], 'Worker1', { dryRun: true });
     var testIfCanSpawnLevel2 = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], 'Worker1', { dryRun: true });
     var testIfCanSpawnLevel1_5 = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], 'Worker1', { dryRun: true });
     var testIfCanSpawnLevel1 = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], 'Worker1', { dryRun: true });
     
-    
+if(0){    
     if (testIfCanSpawnLevel4 == 0){
         Game.spawns[spawn].spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1,level:'level4'}});
@@ -26,7 +50,7 @@ function creep_spawn(type,spawn) {
         Game.spawns[spawn].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: type,spawn_location:spawn,priority:1,level:'level1'}});}
 
-
+}
 if(0){    if(type=='upgrader'){
         //var sources_random = 'alpha';  
     }
