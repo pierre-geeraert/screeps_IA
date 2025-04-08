@@ -14,31 +14,8 @@ var humanRessources = require('human_ressources');
 
 
 module.exports.loop = function () {
-    energy_available = Game.rooms["W7N2"].energyAvailable; 
-    console.log(energy_available);
     
-    if(0){
-    array_body = [WORK,CARRY,MOVE]
-    //console.log(array_body)
-    //console.log(array_body[0])
-    energy_available = Game.rooms["W7N2"].energyAvailable; 
-    console.log(energy_available);
-    energy_CapacityAvailable = Game.rooms["W7N2"].energyCapacityAvailable; 
-    console.log(energy_CapacityAvailable);
-    body_parts_number = energy_available/51;
-    //console.log(body_parts_number)
-    trunc_body_parts_number = Math.trunc(body_parts_number);
-    console.log(trunc_body_parts_number)
 
-    let final_array = array_body; 
-    while (final_array.length < trunc_body_parts_number){
-        final_array.push(WORK);
-        final_array.push(array_body[Math.floor(Math.random() * 2)]);
-        console.log(final_array)
-        
-    }
-}
-    
     //clear non existing creep memory
     function_all.Clearing_non_existing_creep_memory();
  
@@ -47,7 +24,7 @@ module.exports.loop = function () {
     
     humanRessources.user_regulation(
         Room_in="Spawn1",
-        quota_Harvesters=7,
+        quota_Harvesters=8,
         quota_builders=2,
         quota_repairs=0,
         quota_warrepairs=0,

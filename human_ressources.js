@@ -59,6 +59,8 @@ function user_counting(room_in,display_in_console){
         
         if(display_in_console){
             console.log('=======================================================');
+            energy_available = Game.rooms["W7N2"].energyAvailable; 
+            console.log('Energy available : '+energy_available);
             console.log('Room '+number_of_room+' : Total: ' + Total.length);
             console.log('Room '+number_of_room+' : Harvesters: ' + harvesters.length);
             console.log('Room '+number_of_room+' : builders: ' + builders.length);
