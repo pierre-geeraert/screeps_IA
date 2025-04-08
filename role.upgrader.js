@@ -23,7 +23,7 @@ var roleUpgrader = {
             }
 	    }
 	    else {
-	        function_all.find_sources_and_take_energy(creep,0);
+	        function_all.find_sources_and_take_energy(creep,1);
 	    }
 	}
 };

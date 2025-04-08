@@ -14,13 +14,6 @@ var humanRessources = require('human_ressources');
 
 
 module.exports.loop = function () {
-    
-    console.log(Game.spawns.Spawn1.room.energyAvailable);
-    
-    var testIfCanSpawn = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 
-    'Worker1', { dryRun: true });
-    console.log("can I spawn: "+testIfCanSpawn);
-    
     //clear non existing creep memory
     function_all.Clearing_non_existing_creep_memory();
  
@@ -30,13 +23,13 @@ module.exports.loop = function () {
     humanRessources.user_regulation(
         Room_in="Spawn1",
         quota_Harvesters=7,
-        quota_builders=2,
-        quota_repairs=3,
-        quota_warrepairs=2,
-        quota_upgraders=2,
-        quota_explorer=1,
+        quota_builders=1,
+        quota_repairs=0,
+        quota_warrepairs=0,
+        quota_upgraders=3,
+        quota_explorer=0,
         quota_miner=0,
-        quota_rescue=5)
+        quota_rescue=0)
     
     //humanRessources.user_regulation(
     //    Room_in="Spawn2",
