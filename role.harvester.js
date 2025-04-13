@@ -24,7 +24,7 @@ var roleHarvester = {
             //var targets_tower = Game.getObjectById('15369d146d8be78');
             var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||structure.structureType == STRUCTURE_LINK|| structure.structureType == STRUCTURE_SPAWN|| structure.structureType == STRUCTURE_TOWER|| structure.structureType == STRUCTURE_LAB|| structure.structureType == STRUCTURE_CONTAINER) &&
+                        return (structure.structureType == STRUCTURE_EXTENSION ||structure.structureType == STRUCTURE_LINK|| structure.structureType == STRUCTURE_SPAWN|| structure.structureType == STRUCTURE_TOWER|| structure.structureType == STRUCTURE_LAB|| structure.structureType == STRUCTURE_CONTAINER|| structure.structureType == STRUCTURE_STORAGE) &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                     }
             }));

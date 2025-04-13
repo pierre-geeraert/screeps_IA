@@ -1,12 +1,12 @@
 var spawner = require('spawner');
 var function_all = require('function_all');
-
+var functionHarvester = require('function.harvester');
 
 var roleRepair = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        creep.say('e')
+        //creep.say('e')
         var targets_hostiles = function_all.find_hostile_in_room(creep)
         if(targets_hostiles){
             function_all.attack_hostile(creep,targets_hostiles);
@@ -20,8 +20,19 @@ var roleRepair = {
 	        creep.memory.building = true;
 	        creep.say('💣🚧 build');
 	    }
+	    
+	    //harvest the tower
+        var targets_tower = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_TOWER) &&
+                            structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+                    }
+            }));
+        
+        
 
-	    if(creep.memory.building) {
+	    if(creep.memory.building && !(targets_tower)) {
+	                        creep.say('here?')
 	        //var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 	        //var targets_structures = creep.room.find(FIND_STRUCTURES);
 	        var targets = creep.pos.findClosestByPath(creep.room.find(FIND_STRUCTURES, {
@@ -52,8 +63,12 @@ var roleRepair = {
                 //creep.memory.role = 'harvester';
             }
 	    }
+	    else if(targets_tower && !(creep.store.getFreeCapacity() > 0) ) {
+            functionHarvester.move_to_and_transfer(creep,targets_tower);
+            
+            }
 	    else {
-	        function_all.find_sources_and_take_energy(creep,1);
+	        function_all.find_sources_and_take_energy(creep,0);
 	    }
 	}}
 };

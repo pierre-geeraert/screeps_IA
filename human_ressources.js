@@ -7,11 +7,20 @@ quota_repairs,
 quota_warrepairs,
 quota_upgraders,
 quota_explorer,
-quota_miner){
+quota_miner,
+quota_rescue){
     
 const [Total,harvesters,builders,repairs,warrepairs,upgraders,explorer,miner,rescue,fighter] = user_counting(room_in=Room_in,display_in_console=0);
     if(Total.length <= 1){spawner.creep_spawn("rescue",Room_in);}
     //group 1
+//console.log('quota quota_Harvesters'+quota_Harvesters)
+//console.log('quota quota_builders'+quota_builders)
+//console.log('quota quota_repairs'+quota_repairs)
+//console.log('quota quota_warrepairs'+quota_warrepairs)
+//console.log('quota quota_upgraders'+quota_upgraders)
+//console.log('quota quota_explorer'+quota_explorer)
+//console.log('quota quota_miner'+quota_miner)
+//quota_explorer=0
     if(harvesters.length < quota_Harvesters) {
         console.log('inferior to '+quota_Harvesters)
         spawner.creep_spawn("harvester",Room_in);
@@ -27,7 +36,7 @@ const [Total,harvesters,builders,repairs,warrepairs,upgraders,explorer,miner,res
             
             if(builders.length >= quota_builders && repairs.length >= quota_repairs){
                 if(warrepairs.length < quota_warrepairs) {spawner.creep_spawn("warrepairs",Room_in);}
-                if(explorer.length < quota_explorer) {spawner.creep_spawn("explorer",Room_in);}
+                //if(explorer.length < quota_explorer) {spawner.creep_spawn("explorer",Room_in);}
                 if(miner.length < quota_miner) {spawner.creep_spawn("miner",Room_in);}
             }
         }
@@ -50,6 +59,8 @@ function user_counting(room_in,display_in_console){
         
         if(display_in_console){
             console.log('=======================================================');
+            energy_available = Game.rooms["W7N2"].energyAvailable; 
+            console.log('Energy available : '+energy_available);
             console.log('Room '+number_of_room+' : Total: ' + Total.length);
             console.log('Room '+number_of_room+' : Harvesters: ' + harvesters.length);
             console.log('Room '+number_of_room+' : builders: ' + builders.length);
