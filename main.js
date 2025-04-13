@@ -14,6 +14,8 @@ var humanRessources = require('human_ressources');
 
 
 module.exports.loop = function () {
+    
+
     //clear non existing creep memory
     function_all.Clearing_non_existing_creep_memory();
  
@@ -26,7 +28,7 @@ module.exports.loop = function () {
         quota_builders=1,
         quota_repairs=1,
         quota_warrepairs=0,
-        quota_upgraders=2,
+        quota_upgraders=3,
         quota_explorer=0,
         quota_miner=0,
         quota_rescue=0)
@@ -175,6 +177,6 @@ module.exports.loop = function () {
     }   
     
     // tower power
-    roleTower.defendRoom('W7N2',block_repair=0);
+    roleTower.defendRoom('W7N2',block_repair=1);
     //roleTower.defendRoom('W2N2',block_repair=1);
 }

@@ -19,6 +19,7 @@ function creep_spawn(type,spawn) {
     var testIfCanSpawn = Game.spawns['Spawn1'].spawnCreep(final_array, 'Worker1', { dryRun: true });
     console.log("body cost: "+function_all.bodyCost(final_array))
     console.log("can I spawn? "+testIfCanSpawn)
+
     if(testIfCanSpawn==0){
         console.log("can spawn: "+final_array)
         console.log(Game.spawns[spawn].spawnCreep(final_array, newName, 
