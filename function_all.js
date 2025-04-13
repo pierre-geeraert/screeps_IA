@@ -70,5 +70,10 @@ function random(){
        return 'beta';
     }
 }
+function bodyCost(body) {
+    return body.reduce(function (cost, part) {
+        return cost + BODYPART_COST[part];
+    }, 0);
+}
 
-module.exports = {retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile,find_hostile_in_room,random};
+module.exports = {bodyCost,retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile,find_hostile_in_room,random};

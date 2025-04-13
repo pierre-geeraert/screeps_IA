@@ -68,7 +68,7 @@ var roleRepair = {
             
             }
 	    else {
-	        function_all.find_sources_and_take_energy(creep,1);
+	        function_all.find_sources_and_take_energy(creep,0);
 	    }
 	}}
 };

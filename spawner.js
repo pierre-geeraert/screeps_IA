@@ -1,3 +1,4 @@
+var function_all = require('function_all');
 /** @param {Creep} creep **/
 function creep_spawn(type,spawn) {
     var newName = spawn+"_"+ type + Game.time;
@@ -5,18 +6,28 @@ function creep_spawn(type,spawn) {
 
     array_body = [WORK,CARRY,MOVE]
     energy_available = Game.rooms["W7N2"].energyAvailable; 
-    body_parts_number = energy_available/51;
+    body_parts_number = energy_available/50;
     trunc_body_parts_number = Math.trunc(body_parts_number);
-
+    console.log("trunc_body_parts_number: "+trunc_body_parts_number)
     let final_array = array_body; 
+    
     while (final_array.length < trunc_body_parts_number){
         final_array.push(array_body[Math.floor(Math.random() * 2)]);
         console.log(final_array)
         
     }
     var testIfCanSpawn = Game.spawns['Spawn1'].spawnCreep(final_array, 'Worker1', { dryRun: true });
+    console.log("body cost: "+function_all.bodyCost(final_array))
+    console.log("can I spawn? "+testIfCanSpawn)
 
     if(testIfCanSpawn==0){
+        console.log("can spawn: "+final_array)
+        console.log(Game.spawns[spawn].spawnCreep(final_array, newName, 
+            {memory: {role: type,spawn_location:spawn,priority:1,level:final_array.length}}));
+    }
+    if(testIfCanSpawn==-6 && final_array.length > 3){
+        final_array.pop()
+        console.log("final_array popped")
         console.log("can spawn: "+final_array)
         console.log(Game.spawns[spawn].spawnCreep(final_array, newName, 
             {memory: {role: type,spawn_location:spawn,priority:1,level:final_array.length}}));
