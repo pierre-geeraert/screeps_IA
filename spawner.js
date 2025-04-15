@@ -1,11 +1,11 @@
 var function_all = require('function_all');
 /** @param {Creep} creep **/
 function creep_spawn(type,spawn) {
-if(!(Game.spawns['Spawn1'].energy < 300)){
+//if(!(Game.spawns['Spawn1'].energy < 300)){
     var newName = spawn+"_"+ type + Game.time;
     console.log('Spawning new '+type+': ' + newName);
 
-    array_body = [WORK,CARRY,MOVE]
+    array_body = [CARRY,MOVE,WORK]
     energy_available = Game.rooms["W7N2"].energyAvailable; 
     body_parts_number = energy_available/50;
     trunc_body_parts_number = Math.trunc(body_parts_number);
@@ -13,25 +13,32 @@ if(!(Game.spawns['Spawn1'].energy < 300)){
     let final_array = array_body; 
     
     //adding -2 to trunc_body_parts_number because WORK needs 100 instead of 50
-    while (final_array.length < trunc_body_parts_number-3){
-        final_array.push(array_body[Math.floor(Math.random() * 2)]);
-        console.log(final_array)
+    //while (final_array.length < trunc_body_parts_number-3){
+    //    final_array.push(array_body[Math.floor(Math.random() * 2)]);
+        //console.log(final_array)
         
-    }
-    var testIfCanSpawn = Game.spawns['Spawn1'].spawnCreep(final_array, 'Worker1', { dryRun: true });
+    //}
+
+   let bodyParts = function_all.generateBalancedBody(energy_available);
+    console.log(bodyParts)
+    const totalCost = bodyParts.reduce((sum, part) => {
+    return sum + BODYPART_COST[part];
+}, 0);
+console.log("Total cost:", totalCost, "Energy available:", energy_available);
+    var testIfCanSpawn = Game.spawns['Spawn1'].spawnCreep(bodyParts, 'Worker1', { dryRun: true });
   //  console.log("body cost: "+function_all.bodyCost(final_array))
     
     if(testIfCanSpawn==0){
-        console.log("can spawn: "+final_array)
-        console.log(Game.spawns[spawn].spawnCreep(final_array, newName, 
+        console.log("can spawn: "+bodyParts)
+        console.log(Game.spawns[spawn].spawnCreep(bodyParts, newName, 
             {memory: {role: type,spawn_location:spawn,priority:1,level:final_array.length}}));
     }else{
         console.log("can I spawn? "+testIfCanSpawn)
     
     }
-}else{
-    console.log("Waiting controller to be fully charged")
-}
+//}else{
+//    console.log("Waiting controller to be fully charged")
+//}
 
 
     if(Game.spawns[spawn].spawning) { 

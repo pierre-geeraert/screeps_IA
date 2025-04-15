@@ -75,5 +75,43 @@ function bodyCost(body) {
         return cost + BODYPART_COST[part];
     }, 0);
 }
+function generateBalancedBody(energyAvailable) {
+    const pattern = [WORK, CARRY, MOVE]; // Balanced loop
+    const body = [];
+    let cost = 0;
+    let i = 0;
 
-module.exports = {bodyCost,retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile,find_hostile_in_room,random};
+    // Add minimum one of each
+    for (const part of pattern) {
+        const partCost = BODYPART_COST[part]; // Correct way to access the cost
+
+        console.log("part: " + part + " | BODYPART_COST[part]: " + partCost); // Log the cost of each part
+
+        if (cost + partCost > energyAvailable) {
+            return []; // not enough energy for minimum viable creep
+        }
+        body.push(part);
+        cost += partCost;
+    }
+
+    // Loop and add more in round-robin pattern
+    while (body.length < 50) {
+        const part = pattern[i % pattern.length];
+        const partCost = BODYPART_COST[part]; // Correct way to access the cost
+
+        console.log("part: " + part + " | BODYPART_COST[part]: " + partCost); // More debugging to check cost and part
+
+        if (cost + partCost > energyAvailable) {
+            break; // can't afford more
+        }
+
+        body.push(part);
+        cost += partCost;
+        i++;
+    }
+
+    return body;
+}
+
+
+module.exports = {bodyCost,retrieve_from_tombstone,find_sources_and_take_energy,Clearing_non_existing_creep_memory,attack_hostile,find_hostile_in_room,generateBalancedBody,random};
