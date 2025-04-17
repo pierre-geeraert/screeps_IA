@@ -31,7 +31,7 @@ console.log("Total cost:", totalCost, "Energy available:", energy_available);
     if(testIfCanSpawn==0){
         console.log("can spawn: "+bodyParts)
         console.log(Game.spawns[spawn].spawnCreep(bodyParts, newName, 
-            {memory: {role: type,spawn_location:spawn,priority:1,level:final_array.length}}));
+            {memory: {role: type,spawn_location:spawn,priority:1,level:bodyParts.length}}));
     }else{
         console.log("can I spawn? "+testIfCanSpawn)
     

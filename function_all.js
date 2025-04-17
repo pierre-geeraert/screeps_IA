@@ -85,7 +85,7 @@ function generateBalancedBody(energyAvailable) {
     for (const part of pattern) {
         const partCost = BODYPART_COST[part]; // Correct way to access the cost
 
-        console.log("part: " + part + " | BODYPART_COST[part]: " + partCost); // Log the cost of each part
+        //console.log("part: " + part + " | BODYPART_COST[part]: " + partCost); // Log the cost of each part
 
         if (cost + partCost > energyAvailable) {
             return []; // not enough energy for minimum viable creep
@@ -99,7 +99,7 @@ function generateBalancedBody(energyAvailable) {
         const part = pattern[i % pattern.length];
         const partCost = BODYPART_COST[part]; // Correct way to access the cost
 
-        console.log("part: " + part + " | BODYPART_COST[part]: " + partCost); // More debugging to check cost and part
+        //console.log("part: " + part + " | BODYPART_COST[part]: " + partCost); // More debugging to check cost and part
 
         if (cost + partCost > energyAvailable) {
             break; // can't afford more

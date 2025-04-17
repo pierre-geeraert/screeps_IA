@@ -24,11 +24,11 @@ module.exports.loop = function () {
     
     humanRessources.user_regulation(
         Room_in="Spawn1",
-        quota_Harvesters=5,
-        quota_builders=3,
+        quota_Harvesters=4,
+        quota_builders=0,
         quota_repairs=1,
         quota_warrepairs=0,
-        quota_upgraders=4,
+        quota_upgraders=2,
         quota_explorer=0,
         quota_miner=0,
         quota_rescue=0)
@@ -177,6 +177,6 @@ module.exports.loop = function () {
     }   
     
     // tower power
-    roleTower.defendRoom('W7N2',block_repair=1);
+    roleTower.defendRoom('W7N2',block_repair=0);
     //roleTower.defendRoom('W2N2',block_repair=1);
 }

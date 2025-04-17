@@ -5,7 +5,7 @@ function defendRoom(roomName,block_repair) {
     //console.log(towers)
     var targets = (Game.rooms[roomName].find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_WALL ||structure.structureType == STRUCTURE_RAMPART || structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_ROAD) && structure.hits < (structure.hitsMax*0.1)
+                        return (structure.structureType == STRUCTURE_WALL ||structure.structureType == STRUCTURE_RAMPART ) && structure.hits < (structure.hitsMax*0.1)
                     }
             }))
     //shunt to target just the rempart
