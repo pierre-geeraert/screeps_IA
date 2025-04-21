@@ -25,8 +25,8 @@ module.exports.loop = function () {
     humanRessources.user_regulation(
         Room_in="Spawn1",
         quota_Harvesters=4,
-        quota_builders=0,
-        quota_repairs=1,
+        quota_builders=1,
+        quota_repairs=3,
         quota_warrepairs=0,
         quota_upgraders=2,
         quota_explorer=0,
@@ -154,12 +154,14 @@ module.exports.loop = function () {
         //console.log(spawner.source_id_from_position(creep.memory.creep_direction));
         //spawner.set_creep_to_list(creep);
         if(creep.memory.role == 'harvester') {
+            //creep.moveTo(new RoomPosition(43,30, 'W7N2'));
             roleHarvester.run(creep);
         }
 	    if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
         if(creep.memory.role == 'builder') {
+            //creep.moveTo(new RoomPosition(12,9, 'W7N2'));
             roleBuilder.run(creep);
         }
         if(creep.memory.role == 'repairs') {

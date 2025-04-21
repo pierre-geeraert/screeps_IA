@@ -8,16 +8,10 @@ function defendRoom(roomName,block_repair) {
                         return (structure.structureType == STRUCTURE_WALL ||structure.structureType == STRUCTURE_RAMPART ) && structure.hits < (structure.hitsMax*0.1)
                     }
             }))
-    //shunt to target just the rempart
-    //var targets = (Game.rooms[roomName].find(FIND_STRUCTURES, {
-    //                filter: (structure) => {
-    //                    return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < (structure.hitsMax*0.1)
-    //                }
-    //        }))
-    
-            
-            
-    //var towers_repair = Game.getObjectById('6b06fce8cd0881d')
+
+    // sort with the lowest hit number
+    targets.sort((a,b) => a.hits - b.hits);
+
     for(tower of towers){
         //console.log(tower.store[RESOURCE_ENERGY])
         if(targets && tower.store[RESOURCE_ENERGY] > 700 && !block_repair){
@@ -25,12 +19,8 @@ function defendRoom(roomName,block_repair) {
             Game.notify('Repair')
     }
     }
-    //var upgrade_target = Game.getObjectById('f4ecbdb494b06b4')
-    //console.log()
-    
+
     var hostiles = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);
-    //shunt to test
-    //var hostiles = Game.rooms[roomName].find(FIND_CREEPS);
     if(hostiles.length > 0) {
         console.log('hostile')
         var username = hostiles[0].owner.username;
