@@ -17,7 +17,7 @@ function retrieve_from_tombstone(creep){
 
 
 function find_sources_and_take_energy(creep_in,custom_sources){
-    var sources_memory = creep_in.pos.findClosestByPath(FIND_SOURCES);
+    var sources_memory = creep_in.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
     if(custom_sources){
          var sources_memory = creep_in.pos.findClosestByPath(creep_in.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
