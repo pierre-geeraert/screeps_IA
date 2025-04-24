@@ -36,14 +36,18 @@ function find_sources_and_take_energy(creep_in,custom_sources){
     console.log("closest for "+creep_in+": "+creep_in.pos.findClosestByPath(concatenate_source))
     
     if(closest_source){
+        //withdraw a source 
         if(creep_in.withdraw(closest_source,RESOURCE_ENERGY) == ERR_INVALID_TARGET) {
+            creep_in.say("H"+creep_in.harvest(closest_source));
             if(creep_in.harvest(closest_source) == ERR_NOT_IN_RANGE) {
                creep_in.moveTo(closest_source, {visualizePathStyle: {stroke: '#ffaa00'}});
                 creep_in.say('⚡ 🔙');
             }    
         }
+        //harvest one of the structures
         if(creep_in.harvest(closest_source,RESOURCE_ENERGY) == ERR_INVALID_TARGET) {
-            if(creep_in.withdraw(closest_source) == ERR_NOT_IN_RANGE) {
+            creep_in.say("W"+creep_in.withdraw(closest_source));
+            if(creep_in.withdraw(closest_source,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                creep_in.moveTo(closest_source, {visualizePathStyle: {stroke: '#ffaa00'}});
                 creep_in.say('⚡ 🔙');
             }    
