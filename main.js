@@ -14,8 +14,6 @@ var humanRessources = require('human_ressources');
 
 
 module.exports.loop = function () {
-    
-
     //clear non existing creep memory
     function_all.Clearing_non_existing_creep_memory();
  

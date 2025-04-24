@@ -17,28 +17,40 @@ function retrieve_from_tombstone(creep){
 
 
 function find_sources_and_take_energy(creep_in,custom_sources){
-    var sources_memory = creep_in.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-    if(custom_sources){
-         var sources_memory = creep_in.pos.findClosestByPath(creep_in.room.find(FIND_STRUCTURES, {
+    var sources_active = creep_in.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+    var sources_structures = creep_in.pos.findClosestByPath(creep_in.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER ||structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_LINK)&&
                             structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0;;
                     }
             }));
-        if(sources_memory){
-            if(creep_in.withdraw(sources_memory,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
-                creep_in.say('⚡ 🔙C');
-            }
-        }
+    const concatenate_source = []
+    concatenate_source.push(sources_active)
+    
+    if(custom_sources){
+        concatenate_source.push(sources_structures)
     }
-    //creep_in.say(creep_in.harvest(sources_memory))
-    if(!custom_sources){
-    	if(creep_in.harvest(sources_memory) == ERR_NOT_IN_RANGE) {
-            creep_in.moveTo(sources_memory, {visualizePathStyle: {stroke: '#ffaa00'}});
-            creep_in.say('⚡ 🔙');
+    
+    var closest_source = creep_in.pos.findClosestByPath(concatenate_source)
+    //debug only, show the closest 
+    console.log("closest for "+creep_in+": "+creep_in.pos.findClosestByPath(concatenate_source))
+    
+    if(closest_source){
+        if(creep_in.withdraw(closest_source,RESOURCE_ENERGY) == ERR_INVALID_TARGET) {
+            if(creep_in.harvest(closest_source) == ERR_NOT_IN_RANGE) {
+               creep_in.moveTo(closest_source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep_in.say('⚡ 🔙');
+            }    
         }
+        if(creep_in.harvest(closest_source,RESOURCE_ENERGY) == ERR_INVALID_TARGET) {
+            if(creep_in.withdraw(closest_source) == ERR_NOT_IN_RANGE) {
+               creep_in.moveTo(closest_source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep_in.say('⚡ 🔙');
+            }    
+        }
+        
     }
+    
 }
 function Clearing_non_existing_creep_memory(){
     for(var name in Memory.creeps) {
