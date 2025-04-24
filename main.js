@@ -25,7 +25,7 @@ module.exports.loop = function () {
     humanRessources.user_regulation(
         Room_in="Spawn1",
         quota_Harvesters=4,
-        quota_builders=0,
+        quota_builders=2,
         quota_repairs=3,
         quota_warrepairs=0,
         quota_upgraders=2,
