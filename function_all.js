@@ -31,9 +31,16 @@ function find_sources_and_take_energy(creep_in,custom_sources){
         concatenate_source.push(sources_structures)
     }
     
-    var closest_source = creep_in.pos.findClosestByPath(concatenate_source)
+    try {
+        var closest_source = creep_in.pos.findClosestByPath(concatenate_source)
+    }
+    catch(err) {
+        var closest_source = creep_in.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+    }
+ 
+    
     //debug only, show the closest 
-    console.log("closest for "+creep_in+": "+creep_in.pos.findClosestByPath(concatenate_source))
+    //console.log("closest for "+creep_in+": "+creep_in.pos.findClosestByPath(concatenate_source))
     
     if(closest_source){
         //withdraw a source 
